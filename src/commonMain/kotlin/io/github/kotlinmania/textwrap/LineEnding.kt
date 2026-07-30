@@ -7,7 +7,9 @@ package io.github.kotlinmania.textwrap
  * Supported line endings. Like in the Kotlin standard library, two line
  * endings are supported: `\r\n` and `\n`.
  */
-enum class LineEnding(private val ascii: String) {
+enum class LineEnding(
+    private val ascii: String,
+) {
     /**
      * Carriage return and line feed, a line-ending sequence historically used in
      * Windows. Corresponds to the sequence of ASCII control characters
@@ -36,7 +38,9 @@ internal typealias NonEmptyLine = Pair<String, LineEnding?>
  *
  * This class is used internally by the library.
  */
-internal class NonEmptyLines(text: String) : Iterator<NonEmptyLine> {
+internal class NonEmptyLines(
+    text: String,
+) : Iterator<NonEmptyLine> {
     private var remaining = text
     private var nextValue: NonEmptyLine? = null
     private var nextValueReady = false
