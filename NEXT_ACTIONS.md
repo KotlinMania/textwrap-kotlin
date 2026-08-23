@@ -4,14 +4,14 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 1/15 (6.7%)
-- **Function parity:** 5/193 matched (target 7) — 2.6%
-- **Class/type parity:** 2/15 matched (target 4) — 13.3%
-- **Combined symbol parity:** 7/208 matched (target 11) — 3.4%
-- **Average inline-code cosine:** 0.39 (function body across 1 matched files)
-- **Average documentation cosine:** 0.94 (doc text across 1 matched files)
+- **Files Present:** 15/15 (100.0%)
+- **Function parity:** 154/190 matched (target 218) — 81.1%
+- **Class/type parity:** 10/15 matched (target 36) — 66.7%
+- **Combined symbol parity:** 164/205 matched (target 254) — 80.0%
+- **Average inline-code cosine:** 0.50 (function body across 15 matched files)
+- **Average documentation cosine:** 0.60 (doc text across 15 matched files)
 - **Cheat-zeroed Files:** 0
-- **Critical Issues:** 1 files with <0.60 function similarity
+- **Critical Issues:** 8 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -27,7 +27,31 @@ No missing high-value files detected.
 
 Every matched file is listed below with function and type symbol parity.
 
-### 1. line_ending
+### 1. options
+
+- **Target:** `textwrap.Options`
+- **Similarity:** 0.62
+- **Dependents:** 4
+- **Priority Score:** 4021203.8
+- **Functions:** 9/11 matched (target 13)
+- **Missing functions:** `from`, `options_agree_with_usize`
+- **Types:** 1/1 matched (target 2)
+- **Missing types:** _none_
+- **Tests:** 0/1 matched
+
+### 2. wrap
+
+- **Target:** `textwrap.Wrap`
+- **Similarity:** 0.64
+- **Dependents:** 1
+- **Priority Score:** 1064803.6
+- **Functions:** 42/48 matched (target 44)
+- **Missing functions:** `auto_hyphenation_double_hyphenation`, `auto_hyphenation_issue_158`, `split_len_hyphenation`, `borrowed_lines`, `auto_hyphenation_with_hyphen`, `break_words`
+- **Types:** 0/0 matched (target 1)
+- **Missing types:** _none_
+- **Tests:** 39/45 matched
+
+### 3. line_ending
 
 - **Target:** `textwrap.LineEnding`
 - **Similarity:** 0.39
@@ -39,6 +63,147 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** `Item`
 - **Tests:** 3/3 matched
 
+### 4. termwidth
+
+- **Target:** `textwrap.Termwidth`
+- **Similarity:** 0.07
+- **Dependents:** 1
+- **Priority Score:** 1010209.2
+- **Functions:** 1/2 matched (target 1)
+- **Missing functions:** `with_termwidth`
+- **Types:** 0/0 matched
+- **Missing types:** _none_
+
+### 5. wrap_algorithms.optimal_fit
+
+- **Target:** `wrapalgorithms.OptimalFit`
+- **Similarity:** 0.18
+- **Dependents:** 0
+- **Priority Score:** 101508.2
+- **Functions:** 3/11 matched (target 4)
+- **Missing functions:** `default`, `fmt`, `width`, `whitespace_width`, `penalty_width`, `wrap_fragments_with_infinite_widths`, `wrap_fragments_with_huge_widths`, `wrap_fragments_with_large_widths`
+- **Types:** 2/4 matched
+- **Missing types:** `OverflowError`, `Word`
+- **Tests:** 0/6 matched
+
+### 6. word_separators
+
+- **Target:** `textwrap.WordSeparators`
+- **Similarity:** 0.19
+- **Dependents:** 0
+- **Priority Score:** 81108.1
+- **Functions:** 2/10 matched (target 24)
+- **Missing functions:** `eq`, `find_words_ascii_space`, `strip_ansi_escape_sequences`, `find_words_unicode_break_properties`, `to_words`, `find_words_colored_text`, `find_words_color_inside_word`, `word_separator_new`
+- **Types:** 1/1 matched (target 5)
+- **Missing types:** _none_
+- **Tests:** 0/4 matched
+
+### 7. wrap_algorithms
+
+- **Target:** `textwrap.WrapAlgorithms`
+- **Similarity:** 0.59
+- **Dependents:** 0
+- **Priority Score:** 61204.1
+- **Functions:** 5/10 matched (target 20)
+- **Missing functions:** `eq`, `default`, `width`, `whitespace_width`, `penalty_width`
+- **Types:** 1/2 matched (target 7)
+- **Missing types:** `Word`
+- **Tests:** 1/4 matched
+
+### 8. core
+
+- **Target:** `textwrap.Core`
+- **Similarity:** 0.53
+- **Dependents:** 0
+- **Priority Score:** 31904.7
+- **Functions:** 14/16 matched (target 20)
+- **Missing functions:** `deref`, `emojis_have_correct_width`
+- **Types:** 2/3 matched
+- **Missing types:** `Target`
+- **Tests:** 5/6 matched
+
+### 9. fuzzing
+
+- **Target:** `textwrap.Fuzzing`
+- **Similarity:** 0.00
+- **Dependents:** 0
+- **Priority Score:** 30310.0
+- **Functions:** 0/3 matched
+- **Missing functions:** `fill_slow_path`, `wrap_single_line`, `wrap_single_line_slow_path`
+- **Types:** 0/0 matched
+- **Missing types:** _none_
+
+### 10. word_splitters
+
+- **Target:** `textwrap.WordSplitters`
+- **Similarity:** 0.68
+- **Dependents:** 0
+- **Priority Score:** 11003.2
+- **Functions:** 8/9 matched (target 13)
+- **Missing functions:** `eq`
+- **Types:** 1/1 matched (target 5)
+- **Missing types:** _none_
+- **Tests:** 6/6 matched
+
+### 11. refill
+
+- **Target:** `textwrap.Refill`
+- **Similarity:** 0.73
+- **Dependents:** 0
+- **Priority Score:** 2202.7
+- **Functions:** 22/22 matched (target 23)
+- **Missing functions:** _none_
+- **Types:** 0/0 matched (target 1)
+- **Missing types:** _none_
+- **Tests:** 20/20 matched
+
+### 12. fill
+
+- **Target:** `textwrap.Fill`
+- **Similarity:** 0.80
+- **Dependents:** 0
+- **Priority Score:** 2102.0
+- **Functions:** 21/21 matched (target 22)
+- **Missing functions:** _none_
+- **Types:** 0/0 matched (target 1)
+- **Missing types:** _none_
+- **Tests:** 18/18 matched
+
+### 13. indentation
+
+- **Target:** `textwrap.Indentation`
+- **Similarity:** 0.50
+- **Dependents:** 0
+- **Priority Score:** 1505.0
+- **Functions:** 15/15 matched (target 16)
+- **Missing functions:** _none_
+- **Types:** 0/0 matched (target 1)
+- **Missing types:** _none_
+- **Tests:** 13/13 matched
+
+### 14. columns
+
+- **Target:** `textwrap.Columns`
+- **Similarity:** 0.61
+- **Dependents:** 0
+- **Priority Score:** 703.9
+- **Functions:** 7/7 matched (target 8)
+- **Missing functions:** _none_
+- **Types:** 0/0 matched (target 1)
+- **Missing types:** _none_
+- **Tests:** 6/6 matched
+
+### 15. lib
+
+- **Target:** `textwrap.Lib`
+- **Similarity:** 1.00
+- **Dependents:** 0
+- **Priority Score:** 0.0
+- **Functions:** 0/0 matched
+- **Missing functions:** _none_
+- **Types:** 0/0 matched (target 1)
+- **Missing types:** _none_
+
 ## Success Criteria
 
 For each file to be considered "complete":
@@ -47,17 +212,4 @@ For each file to be considered "complete":
 - All tests ported
 - Documentation ported
 - port-lint header present
-
-## Reexport / Wiring Modules
-
-These files match `reexport_modules` patterns in `.ast_distance_config.json`. They are filtered out of
-normal priority and missing-file ladders because they are wiring
-modules, not direct logic ports. Consult them for call-site routing;
-do not treat them as the next implementation target by default.
-
-### Missing
-
-| Source | Expected target | Deps | Source path | Expected path |
-|--------|-----------------|------|-------------|---------------|
-| `lib` | `Lib` | 0 | `lib.rs` | `Lib.kt` |
 
