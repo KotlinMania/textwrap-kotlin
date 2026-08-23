@@ -70,4 +70,13 @@ class WordSplittersTest {
             splitWords(listOf(Word.from("fo-bar")), fixedSplitPoint).toList(),
         )
     }
+
+    @Test
+    fun wordSplittersEquality() {
+        assertEquals(WordSplitter.HyphenSplitter, WordSplitter.HyphenSplitter)
+        assertEquals(WordSplitter.NoHyphenation, WordSplitter.NoHyphenation)
+        val custom1 = WordSplitter.Custom { emptyList() }
+        val custom2 = WordSplitter.Custom { emptyList() }
+        kotlin.test.assertNotEquals(custom1, custom2)
+    }
 }

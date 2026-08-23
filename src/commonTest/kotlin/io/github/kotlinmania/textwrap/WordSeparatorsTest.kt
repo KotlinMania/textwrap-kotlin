@@ -123,4 +123,9 @@ class WordSeparatorsTest {
         val custom2 = WordSeparator.Custom { sequenceOf(Word.from(it)) }
         assertNotEquals(custom1, custom2)
     }
+
+    @Test
+    fun wordSeparatorNew() {
+        assertEquals(WordSeparator.UnicodeBreakProperties, WordSeparator.new())
+    }
 }

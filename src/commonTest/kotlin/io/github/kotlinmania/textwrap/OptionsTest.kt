@@ -7,9 +7,9 @@ import kotlin.test.assertTrue
 
 class OptionsTest {
     @Test
-    fun optionsAgreeWithWidth() {
-        val optInt = Options.new(42)
-        val optOptions = Options(width = 42)
+    fun optionsAgreeWithUsize() {
+        val optInt = Options.from(42)
+        val optOptions = Options.new(42)
 
         assertEquals(optInt.width, optOptions.width)
         assertEquals(optInt.initialIndent, optOptions.initialIndent)

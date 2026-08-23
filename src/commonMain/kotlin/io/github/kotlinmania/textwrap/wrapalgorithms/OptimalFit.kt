@@ -41,6 +41,9 @@ data class Penalties(
     companion object {
         /** Default penalties for monospace text. */
         fun new(): Penalties = Penalties()
+
+        /** Default penalties for monospace text. */
+        fun default(): Penalties = Penalties()
     }
 }
 

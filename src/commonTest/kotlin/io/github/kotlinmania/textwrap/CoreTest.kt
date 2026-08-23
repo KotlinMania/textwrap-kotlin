@@ -42,6 +42,14 @@ class CoreTest {
     }
 
     @Test
+    fun emojisHaveCorrectWidth() {
+        assertEquals(1, displayWidth("#"))
+        assertEquals(1, displayWidth("©"))
+        assertEquals(2, displayWidth("😊"))
+        assertEquals(2, displayWidth("😂"))
+    }
+
+    @Test
     fun wordFromAndProperties() {
         val word = Word.from("Hello!  ")
         assertEquals("Hello!", word.word)

@@ -50,7 +50,7 @@ data class Options(
         /** Creates a new [Options] with the specified width. */
         fun new(width: Int): Options = Options(width = width)
 
-        /** Creates a new [Options] with width set to the current terminal width. */
-        fun withTermwidth(): Options = Options(width = termwidth())
+        /** Creates a new [Options] with the specified width. */
+        fun from(width: Int): Options = Options(width = width)
     }
 }
