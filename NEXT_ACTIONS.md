@@ -5,11 +5,11 @@ Based on AST analysis, here are the concrete next steps.
 ## Summary
 
 - **Files Present:** 15/15 (100.0%)
-- **Function parity:** 154/190 matched (target 218) — 81.1%
+- **Function parity:** 160/190 matched (target 223) — 84.2%
 - **Class/type parity:** 10/15 matched (target 36) — 66.7%
-- **Combined symbol parity:** 164/205 matched (target 254) — 80.0%
-- **Average inline-code cosine:** 0.50 (function body across 15 matched files)
-- **Average documentation cosine:** 0.60 (doc text across 15 matched files)
+- **Combined symbol parity:** 170/205 matched (target 259) — 82.9%
+- **Average inline-code cosine:** 0.54 (function body across 15 matched files)
+- **Average documentation cosine:** 0.61 (doc text across 15 matched files)
 - **Cheat-zeroed Files:** 0
 - **Critical Issues:** 8 files with <0.60 function similarity
 
@@ -30,14 +30,14 @@ Every matched file is listed below with function and type symbol parity.
 ### 1. options
 
 - **Target:** `textwrap.Options`
-- **Similarity:** 0.62
+- **Similarity:** 0.75
 - **Dependents:** 4
-- **Priority Score:** 4021203.8
-- **Functions:** 9/11 matched (target 13)
-- **Missing functions:** `from`, `options_agree_with_usize`
+- **Priority Score:** 4001202.5
+- **Functions:** 11/11 matched (target 13)
+- **Missing functions:** _none_
 - **Types:** 1/1 matched (target 2)
 - **Missing types:** _none_
-- **Tests:** 0/1 matched
+- **Tests:** 1/1 matched
 
 ### 2. wrap
 
@@ -66,22 +66,22 @@ Every matched file is listed below with function and type symbol parity.
 ### 4. termwidth
 
 - **Target:** `textwrap.Termwidth`
-- **Similarity:** 0.07
+- **Similarity:** 0.44
 - **Dependents:** 1
-- **Priority Score:** 1010209.2
-- **Functions:** 1/2 matched (target 1)
-- **Missing functions:** `with_termwidth`
+- **Priority Score:** 1000205.6
+- **Functions:** 2/2 matched
+- **Missing functions:** _none_
 - **Types:** 0/0 matched
 - **Missing types:** _none_
 
 ### 5. wrap_algorithms.optimal_fit
 
 - **Target:** `wrapalgorithms.OptimalFit`
-- **Similarity:** 0.18
+- **Similarity:** 0.20
 - **Dependents:** 0
-- **Priority Score:** 101508.2
-- **Functions:** 3/11 matched (target 4)
-- **Missing functions:** `default`, `fmt`, `width`, `whitespace_width`, `penalty_width`, `wrap_fragments_with_infinite_widths`, `wrap_fragments_with_huge_widths`, `wrap_fragments_with_large_widths`
+- **Priority Score:** 91508.0
+- **Functions:** 4/11 matched (target 5)
+- **Missing functions:** `fmt`, `width`, `whitespace_width`, `penalty_width`, `wrap_fragments_with_infinite_widths`, `wrap_fragments_with_huge_widths`, `wrap_fragments_with_large_widths`
 - **Types:** 2/4 matched
 - **Missing types:** `OverflowError`, `Word`
 - **Tests:** 0/6 matched
@@ -89,14 +89,14 @@ Every matched file is listed below with function and type symbol parity.
 ### 6. word_separators
 
 - **Target:** `textwrap.WordSeparators`
-- **Similarity:** 0.19
+- **Similarity:** 0.24
 - **Dependents:** 0
-- **Priority Score:** 81108.1
-- **Functions:** 2/10 matched (target 24)
-- **Missing functions:** `eq`, `find_words_ascii_space`, `strip_ansi_escape_sequences`, `find_words_unicode_break_properties`, `to_words`, `find_words_colored_text`, `find_words_color_inside_word`, `word_separator_new`
+- **Priority Score:** 71107.6
+- **Functions:** 3/10 matched (target 25)
+- **Missing functions:** `eq`, `find_words_ascii_space`, `strip_ansi_escape_sequences`, `find_words_unicode_break_properties`, `to_words`, `find_words_colored_text`, `find_words_color_inside_word`
 - **Types:** 1/1 matched (target 5)
 - **Missing types:** _none_
-- **Tests:** 0/4 matched
+- **Tests:** 1/4 matched
 
 ### 7. wrap_algorithms
 
@@ -110,19 +110,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** `Word`
 - **Tests:** 1/4 matched
 
-### 8. core
-
-- **Target:** `textwrap.Core`
-- **Similarity:** 0.53
-- **Dependents:** 0
-- **Priority Score:** 31904.7
-- **Functions:** 14/16 matched (target 20)
-- **Missing functions:** `deref`, `emojis_have_correct_width`
-- **Types:** 2/3 matched
-- **Missing types:** `Target`
-- **Tests:** 5/6 matched
-
-### 9. fuzzing
+### 8. fuzzing
 
 - **Target:** `textwrap.Fuzzing`
 - **Similarity:** 0.00
@@ -133,13 +121,25 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 0/0 matched
 - **Missing types:** _none_
 
+### 9. core
+
+- **Target:** `textwrap.Core`
+- **Similarity:** 0.54
+- **Dependents:** 0
+- **Priority Score:** 21904.6
+- **Functions:** 15/16 matched (target 21)
+- **Missing functions:** `deref`
+- **Types:** 2/3 matched
+- **Missing types:** `Target`
+- **Tests:** 6/6 matched
+
 ### 10. word_splitters
 
 - **Target:** `textwrap.WordSplitters`
 - **Similarity:** 0.68
 - **Dependents:** 0
 - **Priority Score:** 11003.2
-- **Functions:** 8/9 matched (target 13)
+- **Functions:** 8/9 matched (target 14)
 - **Missing functions:** `eq`
 - **Types:** 1/1 matched (target 5)
 - **Missing types:** _none_
