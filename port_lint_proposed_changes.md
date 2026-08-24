@@ -1,36 +1,9 @@
 # port-lint Proposed Changes
 
-**Generated:** 2026-08-23
-**Source:** tmp/textwrap
-**Target:** src
+**Generated:** 2026-08-24
+**Source:** tmp/textwrap/src
+**Target:** src/commonMain/kotlin
 
 These are review proposals only. They are emitted when a Rust -> Kotlin pair matches only after fallback normalization, so the existing `port-lint` header is not an exact provenance match.
 
-| Target file | Current header | Proposed header | Source path | Reason |
-|-------------|----------------|-----------------|-------------|--------|
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/Options.kt` | `// port-lint: source options.rs` | `// port-lint: source options.rs` | `options.rs` | `port-lint provenance header matched only after fallback normalization: 'options.rs' vs expected 'options.rs'` |
-| `commonTest/kotlin/io/github/kotlinmania/textwrap/OptionsTest.kt` | `// port-lint: tests options.rs` | `// port-lint: tests options.rs` | `options.rs` | `port-lint provenance header matched only after fallback normalization: 'tests:options.rs' vs expected 'options.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/Wrap.kt` | `// port-lint: source wrap.rs` | `// port-lint: source wrap.rs` | `wrap.rs` | `port-lint provenance header matched only after fallback normalization: 'wrap.rs' vs expected 'wrap.rs'` |
-| `commonTest/kotlin/io/github/kotlinmania/textwrap/WrapTest.kt` | `// port-lint: tests wrap.rs` | `// port-lint: tests wrap.rs` | `wrap.rs` | `port-lint provenance header matched only after fallback normalization: 'tests:wrap.rs' vs expected 'wrap.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/LineEnding.kt` | `// port-lint: source line_ending.rs` | `// port-lint: source line_ending.rs` | `line_ending.rs` | `port-lint provenance header matched only after fallback normalization: 'line_ending.rs' vs expected 'line_ending.rs'` |
-| `commonTest/kotlin/io/github/kotlinmania/textwrap/LineEndingTest.kt` | `// port-lint: source line_ending.rs` | `// port-lint: source line_ending.rs` | `line_ending.rs` | `port-lint provenance header matched only after fallback normalization: 'line_ending.rs' vs expected 'line_ending.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/Termwidth.kt` | `// port-lint: source termwidth.rs` | `// port-lint: source termwidth.rs` | `termwidth.rs` | `port-lint provenance header matched only after fallback normalization: 'termwidth.rs' vs expected 'termwidth.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/wrapalgorithms/OptimalFit.kt` | `// port-lint: source wrap_algorithms/optimal_fit.rs` | `// port-lint: source wrap_algorithms/optimal_fit.rs` | `wrap_algorithms/optimal_fit.rs` | `port-lint provenance header matched only after fallback normalization: 'wrap_algorithms/optimal_fit.rs' vs expected 'wrap_algorithms/optimal_fit.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/WordSeparators.kt` | `// port-lint: source word_separators.rs` | `// port-lint: source word_separators.rs` | `word_separators.rs` | `port-lint provenance header matched only after fallback normalization: 'word_separators.rs' vs expected 'word_separators.rs'` |
-| `commonTest/kotlin/io/github/kotlinmania/textwrap/WordSeparatorsTest.kt` | `// port-lint: tests word_separators.rs` | `// port-lint: tests word_separators.rs` | `word_separators.rs` | `port-lint provenance header matched only after fallback normalization: 'tests:word_separators.rs' vs expected 'word_separators.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/WrapAlgorithms.kt` | `// port-lint: source wrap_algorithms.rs` | `// port-lint: source wrap_algorithms.rs` | `wrap_algorithms.rs` | `port-lint provenance header matched only after fallback normalization: 'wrap_algorithms.rs' vs expected 'wrap_algorithms.rs'` |
-| `commonTest/kotlin/io/github/kotlinmania/textwrap/WrapAlgorithmsTest.kt` | `// port-lint: tests wrap_algorithms.rs` | `// port-lint: tests wrap_algorithms.rs` | `wrap_algorithms.rs` | `port-lint provenance header matched only after fallback normalization: 'tests:wrap_algorithms.rs' vs expected 'wrap_algorithms.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/Fuzzing.kt` | `// port-lint: source fuzzing.rs` | `// port-lint: source fuzzing.rs` | `fuzzing.rs` | `port-lint provenance header matched only after fallback normalization: 'fuzzing.rs' vs expected 'fuzzing.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/Core.kt` | `// port-lint: source core.rs` | `// port-lint: source core.rs` | `core.rs` | `port-lint provenance header matched only after fallback normalization: 'core.rs' vs expected 'core.rs'` |
-| `commonTest/kotlin/io/github/kotlinmania/textwrap/CoreTest.kt` | `// port-lint: tests core.rs` | `// port-lint: tests core.rs` | `core.rs` | `port-lint provenance header matched only after fallback normalization: 'tests:core.rs' vs expected 'core.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/WordSplitters.kt` | `// port-lint: source word_splitters.rs` | `// port-lint: source word_splitters.rs` | `word_splitters.rs` | `port-lint provenance header matched only after fallback normalization: 'word_splitters.rs' vs expected 'word_splitters.rs'` |
-| `commonTest/kotlin/io/github/kotlinmania/textwrap/WordSplittersTest.kt` | `// port-lint: tests word_splitters.rs` | `// port-lint: tests word_splitters.rs` | `word_splitters.rs` | `port-lint provenance header matched only after fallback normalization: 'tests:word_splitters.rs' vs expected 'word_splitters.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/Refill.kt` | `// port-lint: source refill.rs` | `// port-lint: source refill.rs` | `refill.rs` | `port-lint provenance header matched only after fallback normalization: 'refill.rs' vs expected 'refill.rs'` |
-| `commonTest/kotlin/io/github/kotlinmania/textwrap/RefillTest.kt` | `// port-lint: tests refill.rs` | `// port-lint: tests refill.rs` | `refill.rs` | `port-lint provenance header matched only after fallback normalization: 'tests:refill.rs' vs expected 'refill.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/Fill.kt` | `// port-lint: source fill.rs` | `// port-lint: source fill.rs` | `fill.rs` | `port-lint provenance header matched only after fallback normalization: 'fill.rs' vs expected 'fill.rs'` |
-| `commonTest/kotlin/io/github/kotlinmania/textwrap/FillTest.kt` | `// port-lint: tests fill.rs` | `// port-lint: tests fill.rs` | `fill.rs` | `port-lint provenance header matched only after fallback normalization: 'tests:fill.rs' vs expected 'fill.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/Indentation.kt` | `// port-lint: source indentation.rs` | `// port-lint: source indentation.rs` | `indentation.rs` | `port-lint provenance header matched only after fallback normalization: 'indentation.rs' vs expected 'indentation.rs'` |
-| `commonTest/kotlin/io/github/kotlinmania/textwrap/IndentationTest.kt` | `// port-lint: tests indentation.rs` | `// port-lint: tests indentation.rs` | `indentation.rs` | `port-lint provenance header matched only after fallback normalization: 'tests:indentation.rs' vs expected 'indentation.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/Columns.kt` | `// port-lint: source columns.rs` | `// port-lint: source columns.rs` | `columns.rs` | `port-lint provenance header matched only after fallback normalization: 'columns.rs' vs expected 'columns.rs'` |
-| `commonTest/kotlin/io/github/kotlinmania/textwrap/ColumnsTest.kt` | `// port-lint: tests columns.rs` | `// port-lint: tests columns.rs` | `columns.rs` | `port-lint provenance header matched only after fallback normalization: 'tests:columns.rs' vs expected 'columns.rs'` |
-| `commonMain/kotlin/io/github/kotlinmania/textwrap/Lib.kt` | `// port-lint: source lib.rs` | `// port-lint: source lib.rs` | `lib.rs` | `port-lint provenance header matched only after fallback normalization: 'lib.rs' vs expected 'lib.rs'` |
+_No fallback provenance matches detected._
