@@ -62,13 +62,26 @@ sealed interface WordSeparator {
             }
     }
 
+/**
+     * Interface for custom word separation.
+     */
+    interface WordSeparatorFunction {
+        fun findWords(line: String): Sequence<Word>
+    }
+
     /**
      * Find words using a custom word separator function.
      */
     class Custom(
-        val separator: (String) -> Sequence<Word>,
+        val separator: WordSeparatorFunction,
     ) : WordSeparator {
-        override fun findWords(line: String): Sequence<Word> = separator(line)
+        internal constructor(separator: (String) -> Sequence<Word>) : this(
+            object : WordSeparatorFunction {
+                override fun findWords(line: String): Sequence<Word> = separator(line)
+            },
+        )
+
+        override fun findWords(line: String): Sequence<Word> = separator.findWords(line)
 
         override fun equals(other: Any?): Boolean = false
 
