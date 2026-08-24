@@ -76,8 +76,7 @@ class IndentIntegrationTest {
     fun indentedTextShouldHaveTheSameNumberOfLinesAsTheOriginalText() {
         val texts = listOf("foo\nbar", "foo\nbar\n", "foo\nbar\nbaz")
         for (original in texts) {
-            val indented = indent(original, "")
-            assertEquals(original, indented)
+            assertEquals(original, indent(original, ""))
         }
     }
 }

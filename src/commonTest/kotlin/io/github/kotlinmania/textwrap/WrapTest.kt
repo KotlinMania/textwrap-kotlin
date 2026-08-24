@@ -232,6 +232,82 @@ class WrapTest {
     }
 
     @Test
+    fun autoHyphenationDoubleHyphenation() {
+        val options = Options.new(10)
+        assertEquals(
+            listOf("Internatio", "nalization"),
+            wrap("Internationalization", options),
+        )
+
+        val customHyphenation =
+            WordSplitter.Custom { word ->
+                if (word == "Internationalization") listOf(7, 16) else emptyList()
+            }
+        val options2 = Options.new(10).wordSplitter(customHyphenation)
+        assertEquals(
+            listOf("Interna-", "tionaliza-", "tion"),
+            wrap("Internationalization", options2),
+        )
+    }
+
+    @Test
+    fun autoHyphenationIssue158() {
+        val options = Options.new(10)
+        assertEquals(
+            listOf("participat", "ion is", "the key to", "success"),
+            wrap("participation is the key to success", options),
+        )
+
+        val customHyphenation =
+            WordSplitter.Custom { word ->
+                if (word == "participation") listOf(7) else emptyList()
+            }
+        val options2 = Options.new(10).wordSplitter(customHyphenation)
+        assertEquals(
+            listOf("partici-", "pation is", "the key to", "success"),
+            wrap("participation is the key to success", options2),
+        )
+    }
+
+    @Test
+    fun splitLenHyphenation() {
+        val customHyphenation =
+            WordSplitter.Custom { word ->
+                if (word == "collection") listOf(3) else emptyList()
+            }
+        val options = Options.new(15).wordSplitter(customHyphenation)
+        assertEquals(
+            listOf("garbage   col-", "lection"),
+            wrap("garbage   collection", options),
+        )
+    }
+
+    @Test
+    fun autoHyphenationWithHyphen() {
+        val options = Options.new(8).breakWords(false)
+        assertEquals(
+            listOf("over-", "caffinated"),
+            wrap("over-caffinated", options),
+        )
+
+        val customHyphenation =
+            WordSplitter.Custom { word ->
+                if (word == "caffinated") {
+                    listOf(5)
+                } else if (word == "over-caffinated") {
+                    listOf(5, 10)
+                } else {
+                    emptyList()
+                }
+            }
+        val options2 = options.wordSplitter(customHyphenation)
+        assertEquals(
+            listOf("over-", "caffi-", "nated"),
+            wrap("over-caffinated", options2),
+        )
+    }
+
+    @Test
     fun breakWordsTest() {
         assertEquals(listOf("foo", "bar", "baz"), wrap("foobarbaz", 3))
     }
