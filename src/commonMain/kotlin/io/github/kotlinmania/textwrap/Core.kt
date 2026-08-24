@@ -130,7 +130,7 @@ interface Fragment {
  */
 class Word(
     val word: String,
-    val width: Int = displayWidth(word),
+    internal val width: Int = displayWidth(word),
     val whitespace: String = "",
     val penalty: String = "",
 ) : Fragment,

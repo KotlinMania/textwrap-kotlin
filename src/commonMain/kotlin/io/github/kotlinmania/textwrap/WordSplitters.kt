@@ -40,13 +40,26 @@ sealed interface WordSplitter {
         }
     }
 
+/**
+     * Interface for custom word splitting.
+     */
+    interface WordSplitterFunction {
+        fun splitPoints(word: String): List<Int>
+    }
+
     /**
      * Use a custom function as the word splitter.
      */
     class Custom(
-        val splitter: (String) -> List<Int>,
+        val splitter: WordSplitterFunction,
     ) : WordSplitter {
-        override fun splitPoints(word: String): List<Int> = splitter(word)
+        internal constructor(splitter: (String) -> List<Int>) : this(
+            object : WordSplitterFunction {
+                override fun splitPoints(word: String): List<Int> = splitter(word)
+            },
+        )
+
+        override fun splitPoints(word: String): List<Int> = splitter.splitPoints(word)
 
         override fun equals(other: Any?): Boolean = false
 

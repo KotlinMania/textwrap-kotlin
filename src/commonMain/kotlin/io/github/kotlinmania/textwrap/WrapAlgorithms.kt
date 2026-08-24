@@ -47,16 +47,29 @@ sealed interface WrapAlgorithm {
         }
     }
 
+/**
+     * Interface for custom wrapping algorithms.
+     */
+    interface WrapAlgorithmFunction {
+        fun wrap(words: List<Word>, lineWidths: List<Int>): List<List<Word>>
+    }
+
     /**
      * Custom wrapping function.
      */
     class Custom(
-        val wrapper: (words: List<Word>, lineWidths: List<Int>) -> List<List<Word>>,
+        val wrapper: WrapAlgorithmFunction,
     ) : WrapAlgorithm {
+        internal constructor(wrapper: (words: List<Word>, lineWidths: List<Int>) -> List<List<Word>>) : this(
+            object : WrapAlgorithmFunction {
+                override fun wrap(words: List<Word>, lineWidths: List<Int>): List<List<Word>> = wrapper(words, lineWidths)
+            },
+        )
+
         override fun wrap(
             words: List<Word>,
             lineWidths: List<Int>,
-        ): List<List<Word>> = wrapper(words, lineWidths)
+        ): List<List<Word>> = wrapper.wrap(words, lineWidths)
 
         override fun equals(other: Any?): Boolean = false
 
