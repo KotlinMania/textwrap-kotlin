@@ -11,7 +11,7 @@ class IndentationTest {
     }
 
     @Test
-    fun indentNonEmpty() {
+    fun indentNonempty() {
         val text = listOf("  foo\n", "bar\n", "  baz\n").joinToString("")
         val expected = listOf("//   foo\n", "// bar\n", "//   baz\n").joinToString("")
         assertEquals(expected, indent(text, "// "))
