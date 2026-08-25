@@ -5,11 +5,11 @@ Based on AST analysis, here are the concrete next steps.
 ## Summary
 
 - **Files Present:** 15/15 (100.0%)
-- **Function parity:** 183/190 matched (target 278) — 96.3%
-- **Class/type parity:** 15/15 matched (target 48) — 100.0%
-- **Combined symbol parity:** 198/205 matched (target 326) — 96.6%
+- **Function parity:** 183/190 matched (target 280) — 96.3%
+- **Class/type parity:** 13/15 matched (target 42) — 86.7%
+- **Combined symbol parity:** 196/205 matched (target 322) — 95.6%
 - **Average inline-code cosine:** 0.68 (function body across 15 matched files)
-- **Average documentation cosine:** 0.66 (doc text across 15 matched files)
+- **Average documentation cosine:** 0.73 (doc text across 15 matched files)
 - **Cheat-zeroed Files:** 0
 - **Critical Issues:** 3 files with <0.60 function similarity
 
@@ -74,40 +74,40 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
 
-### 5. wrap_algorithms.optimal_fit
+### 5. wrap_algorithms
+
+- **Target:** `textwrap.WrapAlgorithms`
+- **Similarity:** 0.80
+- **Dependents:** 0
+- **Priority Score:** 41202.0
+- **Functions:** 7/10 matched (target 24)
+- **Missing functions:** `width`, `whitespace_width`, `penalty_width`
+- **Types:** 1/2 matched (target 7)
+- **Missing types:** `WrapAlgorithm`
+- **Tests:** 1/4 matched
+
+### 6. wrap_algorithms.optimal_fit
 
 - **Target:** `wrapalgorithms.OptimalFit`
 - **Similarity:** 0.61
 - **Dependents:** 0
 - **Priority Score:** 31503.9
-- **Functions:** 8/11 matched (target 20)
+- **Functions:** 8/11 matched (target 21)
 - **Missing functions:** `width`, `whitespace_width`, `penalty_width`
 - **Types:** 4/4 matched (target 8)
 - **Missing types:** _none_
 - **Tests:** 3/6 matched
-
-### 6. wrap_algorithms
-
-- **Target:** `textwrap.WrapAlgorithms`
-- **Similarity:** 0.80
-- **Dependents:** 0
-- **Priority Score:** 31202.0
-- **Functions:** 7/10 matched (target 26)
-- **Missing functions:** `width`, `whitespace_width`, `penalty_width`
-- **Types:** 2/2 matched (target 9)
-- **Missing types:** _none_
-- **Tests:** 1/4 matched
 
 ### 7. word_separators
 
 - **Target:** `textwrap.WordSeparators`
 - **Similarity:** 0.68
 - **Dependents:** 0
-- **Priority Score:** 11103.2
-- **Functions:** 9/10 matched (target 47)
+- **Priority Score:** 21103.2
+- **Functions:** 9/10 matched (target 48)
 - **Missing functions:** `to_words`
-- **Types:** 1/1 matched (target 6)
-- **Missing types:** _none_
+- **Types:** 0/1 matched (target 4)
+- **Missing types:** `WordSeparator`
 - **Tests:** 3/4 matched
 
 ### 8. refill
@@ -140,7 +140,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Similarity:** 0.60
 - **Dependents:** 0
 - **Priority Score:** 1904.0
-- **Functions:** 16/16 matched (target 22)
+- **Functions:** 16/16 matched (target 23)
 - **Missing functions:** _none_
 - **Types:** 3/3 matched (target 4)
 - **Missing types:** _none_
@@ -164,9 +164,9 @@ Every matched file is listed below with function and type symbol parity.
 - **Similarity:** 0.74
 - **Dependents:** 0
 - **Priority Score:** 1002.6
-- **Functions:** 9/9 matched (target 16)
+- **Functions:** 9/9 matched (target 17)
 - **Missing functions:** _none_
-- **Types:** 1/1 matched (target 6)
+- **Types:** 1/1 matched (target 5)
 - **Missing types:** _none_
 - **Tests:** 6/6 matched
 
@@ -201,7 +201,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Priority Score:** 0.0
 - **Functions:** 0/0 matched
 - **Missing functions:** _none_
-- **Types:** 0/0 matched (target 1)
+- **Types:** 0/0 matched
 - **Missing types:** _none_
 
 ## Success Criteria
