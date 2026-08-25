@@ -5,6 +5,21 @@ private val PREFIX_CHARS = charArrayOf(' ', '-', '+', '*', '>', '#', '/')
 
 /**
  * Unpack a paragraph of already-wrapped text.
+ *
+ * This function attempts to recover the original text from a single
+ * paragraph of wrapped text, such as what [fill] would produce.
+ *
+ * In addition, it recognizes a common prefix and a common line ending among the lines.
+ * The prefix of the first line is returned in [Options.initialIndent] and the prefix
+ * of other lines is returned in [Options.subsequentIndent].
+ *
+ * Example:
+ * ```kotlin
+ * val (text, options) = unfill("* This is an\n  example of\n  a list item.\n")
+ * // text == "This is an example of a list item.\n"
+ * // options.initialIndent == "* "
+ * // options.subsequentIndent == "  "
+ * ```
  */
 fun unfill(text: String): Pair<String, Options> {
     val options = Options.new(0)
@@ -69,6 +84,16 @@ fun unfill(text: String): Pair<String, Options> {
 
 /**
  * Refill a paragraph of wrapped text with a new width.
+ *
+ * This function will first use [unfill] to remove newlines from the text.
+ * Afterwards the text is filled again using [fill].
+ *
+ * Example:
+ * ```kotlin
+ * val text = "> Memory\n> safety without garbage\n> collection.\n"
+ * val refilled = refill(text, 20)
+ * // "> Memory safety\n> without garbage\n> collection.\n"
+ * ```
  */
 fun refill(
     filledText: String,

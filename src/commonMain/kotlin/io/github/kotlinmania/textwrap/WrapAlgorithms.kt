@@ -2,6 +2,13 @@
 package io.github.kotlinmania.textwrap
 
 /**
+ * Custom wrapping algorithm function.
+ */
+fun interface WrapAlgorithmFunction {
+    fun wrap(words: List<Word>, lineWidths: List<Int>): List<List<Word>>
+}
+
+/**
  * Describes how to wrap words into lines.
  *
  * The simplest approach is to wrap words one by one until they no longer fit
@@ -47,12 +54,15 @@ sealed interface WrapAlgorithm {
         }
     }
 
-/**
-     * Interface for custom wrapping algorithms.
+    /**
+     * Compare two wrap algorithms for equality.
      */
-    interface WrapAlgorithmFunction {
-        fun wrap(words: List<Word>, lineWidths: List<Int>): List<List<Word>>
-    }
+    fun eq(other: WrapAlgorithm): Boolean = this == other
+
+    /**
+     * Clone this wrap algorithm.
+     */
+    fun clone(): WrapAlgorithm = this
 
     /**
      * Custom wrapping function.
@@ -60,21 +70,20 @@ sealed interface WrapAlgorithm {
     class Custom(
         val wrapper: WrapAlgorithmFunction,
     ) : WrapAlgorithm {
-        internal constructor(wrapper: (words: List<Word>, lineWidths: List<Int>) -> List<List<Word>>) : this(
-            object : WrapAlgorithmFunction {
-                override fun wrap(words: List<Word>, lineWidths: List<Int>): List<List<Word>> = wrapper(words, lineWidths)
-            },
-        )
-
         override fun wrap(
             words: List<Word>,
             lineWidths: List<Int>,
         ): List<List<Word>> = wrapper.wrap(words, lineWidths)
 
+        override fun clone(): WrapAlgorithm = Custom(wrapper)
+
         override fun equals(other: Any?): Boolean = this === other || (other is Custom && wrapper == other.wrapper)
 
         override fun hashCode(): Int = wrapper.hashCode()
     }
+
+
+
 
     companion object {
         /**
@@ -86,6 +95,11 @@ sealed interface WrapAlgorithm {
          * New [OptimalFit] with default penalties.
          */
         fun newOptimalFit(): WrapAlgorithm = OptimalFit(Penalties.new())
+
+        /**
+         * Default [WrapAlgorithm].
+         */
+        fun default(): WrapAlgorithm = new()
     }
 }
 
@@ -117,3 +131,12 @@ fun <T : Fragment> wrapFirstFit(
     lines.add(fragments.subList(start, fragments.size))
     return lines
 }
+
+internal data class WrapWord(
+    val w: Double,
+) : Fragment {
+    override fun width(): Double = w
+    override fun whitespaceWidth(): Double = 1.0
+    override fun penaltyWidth(): Double = 0.0
+}
+

@@ -7,7 +7,18 @@ private const val ZERO_WIDTH_JOINER: Char = '\u200d'
 private const val NON_BREAKING_SPACE: Char = '\u00a0'
 
 /**
+ * Custom word separator function.
+ */
+fun interface WordSeparatorFunction {
+    fun findWords(line: String): List<Word>
+}
+
+/**
  * Describes where words occur in a line of text.
+ *
+ * The simplest approach is to say that words are separated by one or more
+ * ASCII spaces (`' '`). This works for Western languages without emojis. A more
+ * complex approach is to use the Unicode line breaking algorithm.
  */
 sealed interface WordSeparator {
     /**
@@ -16,57 +27,27 @@ sealed interface WordSeparator {
     fun findWords(line: String): Sequence<Word>
 
     /**
+     * Compare two word separators for equality.
+     */
+    fun eq(other: WordSeparator): Boolean = this == other
+
+    /**
+     * Clone this word separator.
+     */
+    fun clone(): WordSeparator = this
+
+    /**
      * Find words by splitting on runs of `' '` characters.
      */
     data object AsciiSpace : WordSeparator {
-        override fun findWords(line: String): Sequence<Word> =
-            sequence {
-                if (line.isEmpty()) return@sequence
-                var start = 0
-                var inWhitespace = false
-                for (idx in line.indices) {
-                    val ch = line[idx]
-                    if (inWhitespace && ch != ' ') {
-                        yield(Word.from(line.substring(start, idx)))
-                        start = idx
-                        inWhitespace = ch == ' '
-                        continue
-                    }
-                    inWhitespace = ch == ' '
-                }
-                if (start < line.length) {
-                    yield(Word.from(line.substring(start)))
-                }
-            }
+        override fun findWords(line: String): Sequence<Word> = findWordsAsciiSpace(line)
     }
 
     /**
      * Split `line` into words using Unicode break properties.
      */
     data object UnicodeBreakProperties : WordSeparator {
-        override fun findWords(line: String): Sequence<Word> =
-            sequence {
-                if (line.isEmpty()) return@sequence
-
-                val breaks = findUnicodeLineBreaks(line)
-                var start = 0
-                for (brk in breaks) {
-                    if (brk > start && brk <= line.length) {
-                        yield(Word.from(line.substring(start, brk)))
-                        start = brk
-                    }
-                }
-                if (start < line.length) {
-                    yield(Word.from(line.substring(start)))
-                }
-            }
-    }
-
-/**
-     * Interface for custom word separation.
-     */
-    interface WordSeparatorFunction {
-        fun findWords(line: String): Sequence<Word>
+        override fun findWords(line: String): Sequence<Word> = findWordsUnicodeBreakProperties(line)
     }
 
     /**
@@ -75,18 +56,18 @@ sealed interface WordSeparator {
     class Custom(
         val separator: WordSeparatorFunction,
     ) : WordSeparator {
-        internal constructor(separator: (String) -> Sequence<Word>) : this(
-            object : WordSeparatorFunction {
-                override fun findWords(line: String): Sequence<Word> = separator(line)
-            },
-        )
+        override fun findWords(line: String): Sequence<Word> = separator.findWords(line).asSequence()
 
-        override fun findWords(line: String): Sequence<Word> = separator.findWords(line)
+        override fun clone(): WordSeparator = Custom(separator)
 
         override fun equals(other: Any?): Boolean = this === other || (other is Custom && separator == other.separator)
 
         override fun hashCode(): Int = separator.hashCode()
     }
+
+
+
+
 
     companion object {
         /**
@@ -95,6 +76,59 @@ sealed interface WordSeparator {
         fun new(): WordSeparator = UnicodeBreakProperties
     }
 }
+
+internal fun findWordsAsciiSpace(line: String): Sequence<Word> =
+    sequence {
+        if (line.isEmpty()) return@sequence
+        var start = 0
+        var inWhitespace = false
+        for (idx in line.indices) {
+            val ch = line[idx]
+            if (inWhitespace && ch != ' ') {
+                yield(Word.from(line.substring(start, idx)))
+                start = idx
+                inWhitespace = ch == ' '
+                continue
+            }
+            inWhitespace = ch == ' '
+        }
+        if (start < line.length) {
+            yield(Word.from(line.substring(start)))
+        }
+    }
+
+internal fun stripAnsiEscapeSequences(text: String): String {
+    val chars = text.iterator()
+    val sb = StringBuilder()
+    while (chars.hasNext()) {
+        val ch = chars.next()
+        if (skipAnsiEscapeSequence(ch, chars)) {
+            continue
+        }
+        sb.append(ch)
+    }
+    return sb.toString()
+}
+
+internal fun findWordsUnicodeBreakProperties(line: String): Sequence<Word> =
+    sequence {
+        if (line.isEmpty()) return@sequence
+
+        val breaks = findUnicodeLineBreaks(line)
+        var start = 0
+        for (brk in breaks) {
+            if (brk > start && brk <= line.length) {
+                yield(Word.from(line.substring(start, brk)))
+                start = brk
+            }
+        }
+        if (start < line.length) {
+            yield(Word.from(line.substring(start)))
+        }
+    }
+
+internal fun toWords(words: List<String>): List<Word> = words.map { Word.from(it) }
+
 
 private fun isCjk(ch: Char): Boolean =
     ch in '\u4e00'..'\u9fff' ||

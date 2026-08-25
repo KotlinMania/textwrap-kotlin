@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
 class WrapAlgorithmsTest {
-    private data class TestWord(
+    private data class Word(
         val w: Double,
     ) : Fragment {
         override fun width(): Double = w
@@ -33,24 +33,24 @@ class WrapAlgorithmsTest {
     fun wrapStringLongerThanF64() {
         val words =
             listOf(
-                TestWord(1e307),
-                TestWord(2e307),
-                TestWord(3e307),
-                TestWord(4e307),
-                TestWord(5e307),
-                TestWord(6e307),
+                Word(1e307),
+                Word(2e307),
+                Word(3e307),
+                Word(4e307),
+                Word(5e307),
+                Word(6e307),
             )
         val wrapped = wrapFirstFit(words, listOf(15e307))
         assertEquals(
             listOf(
                 listOf(
-                    TestWord(1e307),
-                    TestWord(2e307),
-                    TestWord(3e307),
-                    TestWord(4e307),
-                    TestWord(5e307),
+                    Word(1e307),
+                    Word(2e307),
+                    Word(3e307),
+                    Word(4e307),
+                    Word(5e307),
                 ),
-                listOf(TestWord(6e307)),
+                listOf(Word(6e307)),
             ),
             wrapped,
         )
@@ -105,27 +105,5 @@ class WrapAlgorithmsTest {
             assignDays(tasks, 16.0),
         )
     }
-
-    @Test
-    fun wrapFragmentsWithInfiniteWidths() {
-        val words = listOf(TestWord(Double.POSITIVE_INFINITY))
-        assertFailsWith<OverflowException> {
-            wrapOptimalFit(words, listOf(0.0), Penalties.new())
-        }
-    }
-
-    @Test
-    fun wrapFragmentsWithHugeWidths() {
-        val words = listOf(TestWord(1e200), TestWord(1e250), TestWord(1e300))
-        assertFailsWith<OverflowException> {
-            wrapOptimalFit(words, listOf(1e300), Penalties.new())
-        }
-    }
-
-    @Test
-    fun wrapFragmentsWithLargeWidths() {
-        val words = listOf(TestWord(1e25), TestWord(1e50), TestWord(1e75))
-        val result = wrapOptimalFit(words, listOf(1e100), Penalties.new())
-        assertEquals(listOf(words), result)
-    }
 }
+

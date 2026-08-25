@@ -3,6 +3,15 @@ package io.github.kotlinmania.textwrap
 
 /**
  * Wrap text into columns with a given total width.
+ *
+ * The [leftGap], [middleGap] and [rightGap] arguments specify the
+ * strings to insert before, between, and after the columns.
+ *
+ * Example:
+ * ```kotlin
+ * val text = "This is an example text, which is wrapped into three columns. Notice how the final column can be shorter than the others."
+ * val cols = wrapColumns(text, 3, 50, "| ", " | ", " |")
+ * ```
  */
 fun wrapColumns(
     text: String,

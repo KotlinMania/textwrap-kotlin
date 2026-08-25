@@ -3,6 +3,23 @@ package io.github.kotlinmania.textwrap
 
 /**
  * Wrap a line of text at a given width.
+ *
+ * The result is a list of strings. The lines do not have trailing whitespace,
+ * including a final `'\n'`. Use [fill] if you need a single formatted [String] instead.
+ *
+ * The easiest way to use this function is to pass an integer width:
+ * ```kotlin
+ * val lines = wrap("Memory safety without garbage collection.", 15)
+ * // listOf("Memory safety", "without garbage", "collection.")
+ * ```
+ *
+ * If you need to customize the wrapping, pass [Options]:
+ * ```kotlin
+ * val options = Options.new(15)
+ *     .initialIndent("- ")
+ *     .subsequentIndent("  ")
+ * val lines = wrap("Memory safety without garbage collection.", options)
+ * ```
  */
 fun wrap(
     text: String,
@@ -11,6 +28,8 @@ fun wrap(
 
 /**
  * Wrap a line of text with the given [options].
+ *
+ * Uses the configured wrap algorithm (optimal fit by default) and word splitters.
  */
 fun wrap(
     text: String,
