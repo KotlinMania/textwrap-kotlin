@@ -8,7 +8,7 @@ Based on AST analysis, here are the concrete next steps.
 - **Function parity:** 164/190 matched (target 231) — 86.3%
 - **Class/type parity:** 10/15 matched (target 39) — 66.7%
 - **Combined symbol parity:** 174/205 matched (target 270) — 84.9%
-- **Average inline-code cosine:** 0.55 (function body across 15 matched files)
+- **Average inline-code cosine:** 0.54 (function body across 15 matched files)
 - **Average documentation cosine:** 0.60 (doc text across 15 matched files)
 - **Cheat-zeroed Files:** 0
 - **Critical Issues:** 8 files with <0.60 function similarity
@@ -77,9 +77,9 @@ Every matched file is listed below with function and type symbol parity.
 ### 5. wrap_algorithms.optimal_fit
 
 - **Target:** `wrapalgorithms.OptimalFit`
-- **Similarity:** 0.20
+- **Similarity:** 0.18
 - **Dependents:** 0
-- **Priority Score:** 91508.0
+- **Priority Score:** 91508.2
 - **Functions:** 4/11 matched (target 5)
 - **Missing functions:** `fmt`, `width`, `whitespace_width`, `penalty_width`, `wrap_fragments_with_infinite_widths`, `wrap_fragments_with_huge_widths`, `wrap_fragments_with_large_widths`
 - **Types:** 2/4 matched
