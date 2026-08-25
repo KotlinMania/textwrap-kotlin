@@ -28,8 +28,12 @@ enum class LineEnding(
     fun asStr(): String = ascii
 }
 
+
 /** A non-empty line and the line ending that terminated it, if any. */
-internal typealias NonEmptyLine = Pair<String, LineEnding?>
+public typealias Item = Pair<String, LineEnding?>
+
+/** A non-empty line and the line ending that terminated it, if any. */
+internal typealias NonEmptyLine = Item
 
 /**
  * An iterator over the lines of a string, as [NonEmptyLine] values; it only

@@ -213,6 +213,21 @@ class Word(
         return result
     }
 
+    /**
+     * Target type for Word dereferencing.
+     */
+    interface Target : CharSequence
+
+    /**
+     * Dereference to the underlying word string slice.
+     */
+    fun deref(): String = word
+
+    /**
+     * Clone this Word.
+     */
+    fun clone(): Word = Word(word, width, whitespace, penalty)
+
     override fun toString(): String =
         "Word(word='$word', width=$width, whitespace='$whitespace', penalty='$penalty')"
 

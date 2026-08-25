@@ -308,7 +308,19 @@ class WrapTest {
     }
 
     @Test
-    fun breakWordsTest() {
+    fun borrowedLines() {
+        val customHyphenation =
+            WordSplitter.Custom { word ->
+                if (word == "Internationalization") listOf(7, 16) else emptyList()
+            }
+        val options = Options.new(10).wordSplitter(customHyphenation)
+        val lines = wrap("Internationalization", options)
+        assertEquals(listOf("Interna-", "tionaliza-", "tion"), lines)
+    }
+
+
+    @Test
+    fun breakWords() {
         assertEquals(listOf("foo", "bar", "baz"), wrap("foobarbaz", 3))
     }
 

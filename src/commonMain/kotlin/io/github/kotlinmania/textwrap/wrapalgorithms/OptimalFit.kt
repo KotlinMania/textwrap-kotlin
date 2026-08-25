@@ -4,9 +4,25 @@ package io.github.kotlinmania.textwrap
 /**
  * Overflow error during the [wrapOptimalFit] computation.
  */
-class OverflowException(
+class OverflowError(
     message: String = "wrap_optimal_fit cost computation overflowed",
-) : RuntimeException(message)
+) : RuntimeException(message) {
+    /** Format the error message. */
+    fun fmt(): String = message ?: "wrap_optimal_fit cost computation overflowed"
+}
+
+/**
+ * Overflow error alias during the [wrapOptimalFit] computation.
+ */
+typealias OverflowException = OverflowError
+
+internal data class OptimalFitWord(
+    val w: Double,
+) : Fragment {
+    override fun width(): Double = w
+    override fun whitespaceWidth(): Double = 1.0
+    override fun penaltyWidth(): Double = 0.0
+}
 
 /**
  * Penalties for [WrapAlgorithm.OptimalFit] and [wrapOptimalFit].
@@ -38,6 +54,24 @@ data class Penalties(
      */
     var hyphenPenalty: Int = 25,
 ) {
+    /** Change [nlinePenalty]. */
+    fun nlinePenalty(nlinePenalty: Int): Penalties = copy(nlinePenalty = nlinePenalty)
+
+    /** Change [overflowPenalty]. */
+    fun overflowPenalty(overflowPenalty: Int): Penalties = copy(overflowPenalty = overflowPenalty)
+
+    /** Change [shortLastLineFraction]. */
+    fun shortLastLineFraction(shortLastLineFraction: Int): Penalties = copy(shortLastLineFraction = shortLastLineFraction)
+
+    /** Change [shortLastLinePenalty]. */
+    fun shortLastLinePenalty(shortLastLinePenalty: Int): Penalties = copy(shortLastLinePenalty = shortLastLinePenalty)
+
+    /** Change [hyphenPenalty]. */
+    fun hyphenPenalty(hyphenPenalty: Int): Penalties = copy(hyphenPenalty = hyphenPenalty)
+
+    /** Clone penalties. */
+    fun clone(): Penalties = copy()
+
     companion object {
         /** Default penalties for monospace text. */
         fun new(): Penalties = Penalties()

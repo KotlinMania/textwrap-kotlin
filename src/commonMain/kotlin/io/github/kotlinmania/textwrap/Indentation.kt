@@ -14,7 +14,17 @@ internal fun rustLines(s: String): List<String> {
 /**
  * Indent each line by the given [prefix].
  *
- * When indenting, trailing whitespace is stripped from the prefix for empty or whitespace-only lines.
+ * Example:
+ * ```kotlin
+ * val indented = indent("First line.\nSecond line.\n", "  ")
+ * // "  First line.\n  Second line.\n"
+ * ```
+ *
+ * When indenting, trailing whitespace is stripped from the prefix on empty lines:
+ * ```kotlin
+ * val indented = indent("foo = 123\n\nprint(foo)\n", "# ")
+ * // "# foo = 123\n#\n# print(foo)\n"
+ * ```
  */
 fun indent(
     s: String,
@@ -52,6 +62,15 @@ fun indent(
 
 /**
  * Removes common leading whitespace from each line.
+ *
+ * This function will look at each non-empty line and determine the
+ * maximum amount of whitespace that can be removed from all lines.
+ *
+ * Example:
+ * ```kotlin
+ * val dedented = dedent("\n    1st line\n      2nd line\n    3rd line\n")
+ * // "\n1st line\n  2nd line\n3rd line\n"
+ * ```
  */
 fun dedent(s: String): String {
     val lines = rustLines(s)

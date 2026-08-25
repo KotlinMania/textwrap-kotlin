@@ -2,6 +2,13 @@
 package io.github.kotlinmania.textwrap
 
 /**
+ * Custom word splitter function.
+ */
+fun interface WordSplitterFunction {
+    fun splitPoints(word: String): List<Int>
+}
+
+/**
  * The [WordSplitter] enum describes where words can be split.
  */
 sealed interface WordSplitter {
@@ -12,6 +19,16 @@ sealed interface WordSplitter {
      * the split point, i.e., after `-` if splitting on hyphens.
      */
     fun splitPoints(word: String): List<Int>
+
+    /**
+     * Compare two word splitters for equality.
+     */
+    fun eq(other: WordSplitter): Boolean = this == other
+
+    /**
+     * Clone this word splitter.
+     */
+    fun clone(): WordSplitter = this
 
     /**
      * Avoid any kind of hyphenation.
@@ -40,31 +57,22 @@ sealed interface WordSplitter {
         }
     }
 
-/**
-     * Interface for custom word splitting.
-     */
-    interface WordSplitterFunction {
-        fun splitPoints(word: String): List<Int>
-    }
-
     /**
      * Use a custom function as the word splitter.
      */
     class Custom(
         val splitter: WordSplitterFunction,
     ) : WordSplitter {
-        internal constructor(splitter: (String) -> List<Int>) : this(
-            object : WordSplitterFunction {
-                override fun splitPoints(word: String): List<Int> = splitter(word)
-            },
-        )
-
         override fun splitPoints(word: String): List<Int> = splitter.splitPoints(word)
+
+        override fun clone(): WordSplitter = Custom(splitter)
 
         override fun equals(other: Any?): Boolean = this === other || (other is Custom && splitter == other.splitter)
 
         override fun hashCode(): Int = splitter.hashCode()
     }
+
+
 }
 
 /**
