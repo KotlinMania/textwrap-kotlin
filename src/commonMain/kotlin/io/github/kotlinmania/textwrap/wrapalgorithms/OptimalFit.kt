@@ -48,18 +48,18 @@ data class Penalties(
 }
 
 private class LineNumbers {
-    private val lineNumbers = mutableListOf(0)
+    private val numbers = mutableListOf(0)
 
     fun <T> get(
         i: Int,
         minima: List<Pair<Int, T>>,
     ): Int {
-        while (lineNumbers.size < i + 1) {
-            val pos = lineNumbers.size
+        while (numbers.size < i + 1) {
+            val pos = numbers.size
             val lineNumber = 1 + get(minima[pos].first, minima)
-            lineNumbers.add(lineNumber)
+            numbers.add(lineNumber)
         }
-        return lineNumbers[i]
+        return numbers[i]
     }
 }
 

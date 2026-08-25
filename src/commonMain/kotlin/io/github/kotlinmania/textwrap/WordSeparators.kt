@@ -83,7 +83,7 @@ sealed interface WordSeparator {
 
         override fun findWords(line: String): Sequence<Word> = separator.findWords(line)
 
-        override fun equals(other: Any?): Boolean = false
+        override fun equals(other: Any?): Boolean = this === other || (other is Custom && separator == other.separator)
 
         override fun hashCode(): Int = separator.hashCode()
     }

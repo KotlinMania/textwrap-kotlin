@@ -71,7 +71,7 @@ sealed interface WrapAlgorithm {
             lineWidths: List<Int>,
         ): List<List<Word>> = wrapper.wrap(words, lineWidths)
 
-        override fun equals(other: Any?): Boolean = false
+        override fun equals(other: Any?): Boolean = this === other || (other is Custom && wrapper == other.wrapper)
 
         override fun hashCode(): Int = wrapper.hashCode()
     }

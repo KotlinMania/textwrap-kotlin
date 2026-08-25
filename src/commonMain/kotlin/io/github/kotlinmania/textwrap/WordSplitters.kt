@@ -61,7 +61,7 @@ sealed interface WordSplitter {
 
         override fun splitPoints(word: String): List<Int> = splitter.splitPoints(word)
 
-        override fun equals(other: Any?): Boolean = false
+        override fun equals(other: Any?): Boolean = this === other || (other is Custom && splitter == other.splitter)
 
         override fun hashCode(): Int = splitter.hashCode()
     }
