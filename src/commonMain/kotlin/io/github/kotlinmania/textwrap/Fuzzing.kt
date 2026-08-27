@@ -1,4 +1,4 @@
-// port-lint: source fuzzing.rs
+// port-lint: source textwrap/src/fuzzing.rs
 package io.github.kotlinmania.textwrap
 
 /**
