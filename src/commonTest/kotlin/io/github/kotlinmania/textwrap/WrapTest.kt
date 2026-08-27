@@ -1,4 +1,4 @@
-// port-lint: tests wrap.rs
+// port-lint: tests textwrap/src/wrap.rs
 package io.github.kotlinmania.textwrap
 
 import kotlin.test.Test

@@ -1,4 +1,4 @@
-// port-lint: source options.rs
+// port-lint: source textwrap/src/options.rs
 package io.github.kotlinmania.textwrap
 
 /**

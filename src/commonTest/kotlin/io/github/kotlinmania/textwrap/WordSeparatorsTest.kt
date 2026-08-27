@@ -1,4 +1,4 @@
-// port-lint: tests word_separators.rs
+// port-lint: tests textwrap/src/word_separators.rs
 package io.github.kotlinmania.textwrap
 
 import kotlin.test.Test

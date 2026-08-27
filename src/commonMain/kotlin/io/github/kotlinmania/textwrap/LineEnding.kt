@@ -1,4 +1,4 @@
-// port-lint: source line_ending.rs
+// port-lint: source textwrap/src/line_ending.rs
 package io.github.kotlinmania.textwrap
 
 /**
