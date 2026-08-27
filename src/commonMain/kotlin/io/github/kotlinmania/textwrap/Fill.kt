@@ -1,4 +1,4 @@
-// port-lint: source textwrap/src/fill.rs
+// port-lint: source fill.rs
 package io.github.kotlinmania.textwrap
 
 /**

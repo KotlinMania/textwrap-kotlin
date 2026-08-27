@@ -1,4 +1,4 @@
-// port-lint: tests textwrap/src/columns.rs
+// port-lint: tests columns.rs
 package io.github.kotlinmania.textwrap
 
 import kotlin.test.Test

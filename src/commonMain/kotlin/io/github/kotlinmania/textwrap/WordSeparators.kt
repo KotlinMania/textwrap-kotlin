@@ -1,4 +1,4 @@
-// port-lint: source textwrap/src/word_separators.rs
+// port-lint: source word_separators.rs
 package io.github.kotlinmania.textwrap
 
 private const val SHY: Char = '\u00ad'

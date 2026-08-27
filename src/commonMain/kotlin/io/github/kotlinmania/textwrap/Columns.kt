@@ -1,4 +1,4 @@
-// port-lint: source textwrap/src/columns.rs
+// port-lint: source columns.rs
 package io.github.kotlinmania.textwrap
 
 /**

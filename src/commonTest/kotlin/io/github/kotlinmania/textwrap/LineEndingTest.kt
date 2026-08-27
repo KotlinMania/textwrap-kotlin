@@ -1,4 +1,4 @@
-// port-lint: tests textwrap/src/line_ending.rs
+// port-lint: tests line_ending.rs
 package io.github.kotlinmania.textwrap
 
 import kotlin.test.Test
