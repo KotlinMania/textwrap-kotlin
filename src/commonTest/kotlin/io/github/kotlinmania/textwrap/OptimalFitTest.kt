@@ -10,7 +10,9 @@ class OptimalFitTest {
         val w: Double,
     ) : Fragment {
         override fun width(): Double = w
+
         override fun whitespaceWidth(): Double = 1.0
+
         override fun penaltyWidth(): Double = 0.0
     }
 

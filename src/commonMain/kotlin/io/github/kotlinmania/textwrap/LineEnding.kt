@@ -28,7 +28,6 @@ enum class LineEnding(
     fun asStr(): String = ascii
 }
 
-
 /** A non-empty line and the line ending that terminated it, if any. */
 public typealias Item = Pair<String, LineEnding?>
 

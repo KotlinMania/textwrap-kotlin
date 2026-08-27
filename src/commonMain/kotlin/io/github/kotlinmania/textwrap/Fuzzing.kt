@@ -36,16 +36,19 @@ fun fuzzWrapSingleLineSlowPath(
  */
 object Fuzzing {
     /** Exposed for fuzzing so we can check the slow path is correct. */
-    fun fillSlowPath(text: String, options: Options): String = io.github.kotlinmania.textwrap.fillSlowPath(text, options)
+    fun fillSlowPath(text: String, options: Options): String =
+        io.github.kotlinmania.textwrap
+            .fillSlowPath(text, options)
 
     /** Exposed for fuzzing so we can check the slow path is correct. */
     fun wrapSingleLine(line: String, options: Options, lines: MutableList<String>) {
-        io.github.kotlinmania.textwrap.wrapSingleLine(line, options, lines)
+        io.github.kotlinmania.textwrap
+            .wrapSingleLine(line, options, lines)
     }
 
     /** Exposed for fuzzing so we can check the slow path is correct. */
     fun wrapSingleLineSlowPath(line: String, options: Options, lines: MutableList<String>) {
-        io.github.kotlinmania.textwrap.wrapSingleLineSlowPath(line, options, lines)
+        io.github.kotlinmania.textwrap
+            .wrapSingleLineSlowPath(line, options, lines)
     }
 }
-

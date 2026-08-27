@@ -65,10 +65,6 @@ sealed interface WordSeparator {
         override fun hashCode(): Int = separator.hashCode()
     }
 
-
-
-
-
     companion object {
         /**
          * Create a new word separator using the default algorithm.
@@ -128,7 +124,6 @@ internal fun findWordsUnicodeBreakProperties(line: String): Sequence<Word> =
     }
 
 internal fun toWords(words: List<String>): List<Word> = words.map { Word.from(it) }
-
 
 private fun isCjk(ch: Char): Boolean =
     ch in '\u4e00'..'\u9fff' ||

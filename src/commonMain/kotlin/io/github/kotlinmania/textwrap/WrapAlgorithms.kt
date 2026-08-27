@@ -82,9 +82,6 @@ sealed interface WrapAlgorithm {
         override fun hashCode(): Int = wrapper.hashCode()
     }
 
-
-
-
     companion object {
         /**
          * Create new wrap algorithm with optimal fit by default.
@@ -136,7 +133,8 @@ internal data class WrapWord(
     val w: Double,
 ) : Fragment {
     override fun width(): Double = w
+
     override fun whitespaceWidth(): Double = 1.0
+
     override fun penaltyWidth(): Double = 0.0
 }
-
