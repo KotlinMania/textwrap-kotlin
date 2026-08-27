@@ -204,4 +204,3 @@ class WordSeparatorsTest {
         assertNotEquals(custom1, custom2)
     }
 }
-

@@ -3,7 +3,6 @@ package io.github.kotlinmania.textwrap
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 
 class WrapAlgorithmsTest {
     private data class Word(
@@ -106,4 +105,3 @@ class WrapAlgorithmsTest {
         )
     }
 }
-

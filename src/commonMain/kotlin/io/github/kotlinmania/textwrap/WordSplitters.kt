@@ -71,8 +71,6 @@ sealed interface WordSplitter {
 
         override fun hashCode(): Int = splitter.hashCode()
     }
-
-
 }
 
 /**

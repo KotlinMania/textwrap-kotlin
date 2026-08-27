@@ -137,4 +137,3 @@ data class Options(
         fun from(width: Int): Options = Options(width = width)
     }
 }
-

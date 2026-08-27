@@ -318,7 +318,6 @@ class WrapTest {
         assertEquals(listOf("Interna-", "tionaliza-", "tion"), lines)
     }
 
-
     @Test
     fun breakWords() {
         assertEquals(listOf("foo", "bar", "baz"), wrap("foobarbaz", 3))

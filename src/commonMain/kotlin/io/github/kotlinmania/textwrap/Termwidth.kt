@@ -22,4 +22,3 @@ fun termwidth(): Int = 80
  * Equivalent to `Options.new(termwidth())`.
  */
 fun Options.Companion.withTermwidth(): Options = Options.new(termwidth())
-
