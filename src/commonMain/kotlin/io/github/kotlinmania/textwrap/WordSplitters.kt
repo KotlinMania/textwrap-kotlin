@@ -1,4 +1,4 @@
-// port-lint: source textwrap/src/word_splitters.rs
+// port-lint: source word_splitters.rs
 package io.github.kotlinmania.textwrap
 
 /**

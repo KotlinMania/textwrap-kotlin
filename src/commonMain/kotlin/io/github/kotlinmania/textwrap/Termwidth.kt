@@ -1,4 +1,4 @@
-// port-lint: source textwrap/src/termwidth.rs
+// port-lint: source termwidth.rs
 package io.github.kotlinmania.textwrap
 
 /**
