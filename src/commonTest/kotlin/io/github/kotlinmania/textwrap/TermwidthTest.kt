@@ -1,4 +1,4 @@
-// port-lint: tests termwidth.rs
+// port-lint: tests textwrap/src/termwidth.rs
 package io.github.kotlinmania.textwrap
 
 import kotlin.test.Test

@@ -1,4 +1,4 @@
-// port-lint: tests indentation.rs
+// port-lint: tests textwrap/src/indentation.rs
 package io.github.kotlinmania.textwrap
 
 import kotlin.test.Test
