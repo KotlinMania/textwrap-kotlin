@@ -1,4 +1,4 @@
-// port-lint: source textwrap/src/refill.rs
+// port-lint: source refill.rs
 package io.github.kotlinmania.textwrap
 
 private val PREFIX_CHARS = charArrayOf(' ', '-', '+', '*', '>', '#', '/')

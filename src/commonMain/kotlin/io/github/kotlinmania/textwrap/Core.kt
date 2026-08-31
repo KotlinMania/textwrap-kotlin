@@ -1,4 +1,4 @@
-// port-lint: source textwrap/src/core.rs
+// port-lint: source core.rs
 package io.github.kotlinmania.textwrap
 
 private const val CSI_FIRST = '\u001b'
