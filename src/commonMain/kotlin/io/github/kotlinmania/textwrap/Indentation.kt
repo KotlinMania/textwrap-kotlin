@@ -1,4 +1,4 @@
-// port-lint: source textwrap/src/indentation.rs
+// port-lint: source indentation.rs
 package io.github.kotlinmania.textwrap
 
 internal fun rustLines(s: String): List<String> {
