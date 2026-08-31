@@ -1,4 +1,4 @@
-// port-lint: source wrap.rs
+// port-lint: source textwrap/src/wrap.rs
 package io.github.kotlinmania.textwrap
 
 /**
