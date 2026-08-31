@@ -1,4 +1,4 @@
-// port-lint: tests tests/version-numbers.rs
+// port-lint: tests textwrap/tests/version-numbers.rs
 package io.github.kotlinmania.textwrap
 
 import kotlin.test.Test
