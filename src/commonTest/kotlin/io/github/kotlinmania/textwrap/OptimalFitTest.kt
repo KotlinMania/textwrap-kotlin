@@ -1,4 +1,4 @@
-// port-lint: tests wrap_algorithms/optimal_fit.rs
+// port-lint: tests textwrap/src/wrap_algorithms/optimal_fit.rs
 package io.github.kotlinmania.textwrap
 
 import kotlin.test.Test
