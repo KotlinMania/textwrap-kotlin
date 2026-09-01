@@ -1,4 +1,4 @@
-// port-lint: source textwrap/src/wrap_algorithms/optimal_fit.rs
+// port-lint: source wrap_algorithms/optimal_fit.rs
 package io.github.kotlinmania.textwrap
 
 /**
