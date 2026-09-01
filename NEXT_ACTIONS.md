@@ -4,14 +4,14 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 15/17 (88.2%)
-- **Function parity:** 183/200 matched (target 280) — 91.5%
+- **Files Present:** 15/15 (100.0%)
+- **Function parity:** 183/190 matched (target 280) — 96.3%
 - **Class/type parity:** 13/15 matched (target 42) — 86.7%
-- **Combined symbol parity:** 196/215 matched (target 322) — 91.2%
-- **Average inline-code cosine:** 0.66 (function body across 14 matched files)
-- **Average documentation cosine:** 0.74 (doc text across 14 matched files)
+- **Combined symbol parity:** 196/205 matched (target 322) — 95.6%
+- **Average inline-code cosine:** 0.68 (function body across 15 matched files)
+- **Average documentation cosine:** 0.73 (doc text across 15 matched files)
 - **Cheat-zeroed Files:** 0
-- **Critical Issues:** 4 files with <0.60 function similarity
+- **Critical Issues:** 3 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -27,7 +27,7 @@ No missing high-value files detected.
 
 Every matched file is listed below with function and type symbol parity.
 
-### 1. textwrap.options
+### 1. options
 
 - **Target:** `textwrap.Options`
 - **Similarity:** 0.75
@@ -39,7 +39,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 1/1 matched
 
-### 2. textwrap.wrap
+### 2. wrap
 
 - **Target:** `textwrap.Wrap`
 - **Similarity:** 0.72
@@ -51,7 +51,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 45/45 matched
 
-### 3. textwrap.line_ending
+### 3. line_ending
 
 - **Target:** `textwrap.LineEnding`
 - **Similarity:** 0.39
@@ -63,7 +63,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 3/3 matched
 
-### 4. textwrap.termwidth
+### 4. termwidth
 
 - **Target:** `textwrap.Termwidth`
 - **Similarity:** 0.44
@@ -74,7 +74,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
 
-### 5. textwrap.wrap_algorithms
+### 5. wrap_algorithms
 
 - **Target:** `textwrap.WrapAlgorithms`
 - **Similarity:** 0.80
@@ -98,7 +98,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 3/6 matched
 
-### 7. textwrap.word_separators
+### 7. word_separators
 
 - **Target:** `textwrap.WordSeparators`
 - **Similarity:** 0.68
@@ -110,7 +110,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** `WordSeparator`
 - **Tests:** 3/4 matched
 
-### 8. textwrap.refill
+### 8. refill
 
 - **Target:** `textwrap.Refill`
 - **Similarity:** 0.73
@@ -122,7 +122,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 20/20 matched
 
-### 9. textwrap.fill
+### 9. fill
 
 - **Target:** `textwrap.Fill`
 - **Similarity:** 0.80
@@ -134,7 +134,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 18/18 matched
 
-### 10. textwrap.core
+### 10. core
 
 - **Target:** `textwrap.Core`
 - **Similarity:** 0.60
@@ -146,7 +146,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 6/6 matched
 
-### 11. textwrap.indentation
+### 11. indentation
 
 - **Target:** `textwrap.Indentation`
 - **Similarity:** 0.50
@@ -158,7 +158,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 13/13 matched
 
-### 12. textwrap.word_splitters
+### 12. word_splitters
 
 - **Target:** `textwrap.WordSplitters`
 - **Similarity:** 0.74
@@ -170,7 +170,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 6/6 matched
 
-### 13. textwrap.columns
+### 13. columns
 
 - **Target:** `textwrap.Columns`
 - **Similarity:** 0.61
@@ -182,7 +182,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing types:** _none_
 - **Tests:** 6/6 matched
 
-### 14. textwrap.fuzzing
+### 14. fuzzing
 
 - **Target:** `textwrap.Fuzzing`
 - **Similarity:** 0.84
@@ -213,5 +213,5 @@ do not treat them as the next implementation target by default.
 
 | Source | Target | Path |
 |--------|--------|------|
-| `textwrap.lib` | `textwrap.Lib` | `textwrap/src/lib` |
+| `lib` | `textwrap.Lib` | `lib` |
 
