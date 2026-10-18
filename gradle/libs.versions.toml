@@ -26,7 +26,7 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "collectionsImmutable" }
 kotlinx-benchmark-runtime = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-runtime", version.ref = "kotlinxBenchmark" }
-unicode-width = { module = "io.github.kotlinmania:unicode-width-kotlin", version = "0.1.1" }
+unicode-width = { module = "io.github.kotlinmania:unicode-width-kotlin", version = "0.1.2" }
 
 [bundles]
 textwrap-kotlin-commonMain = [
