@@ -201,7 +201,7 @@ will be accepted under the same license.
 
 ```kotlin
 dependencies {
-    implementation("io.github.kotlinmania:textwrap-kotlin:0.1.2")
+    implementation("io.github.kotlinmania:textwrap-kotlin:0.2.0")
 }
 ```
 
