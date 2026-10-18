@@ -11,11 +11,6 @@ class OverflowError(
     fun fmt(): String = message ?: "wrap_optimal_fit cost computation overflowed"
 }
 
-/**
- * Overflow error alias during the [wrapOptimalFit] computation.
- */
-typealias OverflowException = OverflowError
-
 internal data class OptimalFitWord(
     val w: Double,
 ) : Fragment {
@@ -224,7 +219,7 @@ fun <T : Fragment> wrapOptimalFit(
 
     for ((_, cost) in minima) {
         if (cost.isInfinite() || cost.isNaN()) {
-            throw OverflowException()
+            throw io.github.kotlinmania.textwrap.OverflowError()
         }
     }
 
