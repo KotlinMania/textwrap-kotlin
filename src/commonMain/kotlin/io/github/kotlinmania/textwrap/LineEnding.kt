@@ -28,24 +28,18 @@ enum class LineEnding(
     fun asStr(): String = ascii
 }
 
-/** A non-empty line and the line ending that terminated it, if any. */
-public typealias Item = Pair<String, LineEnding?>
-
-/** A non-empty line and the line ending that terminated it, if any. */
-internal typealias NonEmptyLine = Item
-
 /**
- * An iterator over the lines of a string, as [NonEmptyLine] values; it only
- * emits non-empty lines, meaning lines with some content before the terminating
- * `\r\n` or `\n`.
+ * An iterator over the lines of a string, as pairs of string slice and
+ * [LineEnding] values; it only emits non-empty lines, meaning lines with
+ * some content before the terminating `\r\n` or `\n`.
  *
  * This class is used internally by the library.
  */
 internal class NonEmptyLines(
     text: String,
-) : Iterator<NonEmptyLine> {
+) : Iterator<Pair<String, LineEnding?>> {
     private var remaining = text
-    private var nextValue: NonEmptyLine? = null
+    private var nextValue: Pair<String, LineEnding?>? = null
     private var nextValueReady = false
 
     override fun hasNext(): Boolean {
@@ -56,7 +50,7 @@ internal class NonEmptyLines(
         return nextValue != null
     }
 
-    override fun next(): NonEmptyLine {
+    override fun next(): Pair<String, LineEnding?> {
         if (!hasNext()) {
             throw NoSuchElementException()
         }
@@ -66,7 +60,7 @@ internal class NonEmptyLines(
         return value
     }
 
-    private fun advance(): NonEmptyLine? {
+    private fun advance(): Pair<String, LineEnding?>? {
         while (true) {
             val lf = remaining.indexOf('\n')
             if (lf < 0) {

@@ -1,6 +1,7 @@
 // port-lint: tests core.rs
 package io.github.kotlinmania.textwrap
 
+import io.github.kotlinmania.unicodewidth.unicodeWidth
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -43,6 +44,10 @@ class CoreTest {
 
     @Test
     fun emojisHaveCorrectWidth() {
+        assertEquals(1, '#'.code.unicodeWidth())
+        assertEquals(1, '©'.code.unicodeWidth())
+        assertEquals(2, 0x1F60A.unicodeWidth())
+        assertEquals(2, 0x1F602.unicodeWidth())
         assertEquals(1, displayWidth("#"))
         assertEquals(1, displayWidth("©"))
         assertEquals(2, displayWidth("😊"))

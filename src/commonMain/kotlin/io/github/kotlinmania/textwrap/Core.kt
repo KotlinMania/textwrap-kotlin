@@ -1,6 +1,8 @@
 // port-lint: source core.rs
 package io.github.kotlinmania.textwrap
 
+import io.github.kotlinmania.unicodewidth.unicodeWidth
+
 private const val CSI_FIRST = '\u001b'
 private const val CSI_SECOND = '['
 private val ANSI_FINAL_BYTE_RANGE = '\u0040'..'\u007e'
@@ -57,29 +59,7 @@ internal fun chWidth(ch: Char): Int {
     if (ch.isHighSurrogate()) {
         return 2
     }
-    val code = ch.code
-    if (code < 0x20 || (code in 0x7f..0x9f)) {
-        return 0
-    }
-    if (code in 0x200b..0x200f || code in 0x2028..0x202e || code == 0xfeff || code == 0xfe0f) {
-        return 0
-    }
-    if (code in 0x1100..0x115f ||
-        code in 0x2329..0x232a ||
-        code in 0x2600..0x27bf ||
-        code in 0x2e80..0x303e ||
-        code in 0x3040..0x4dbf ||
-        code in 0x4e00..0xa4cf ||
-        code in 0xac00..0xd7a3 ||
-        code in 0xf900..0xfaff ||
-        code in 0xfe10..0xfe19 ||
-        code in 0xfe30..0xfe6f ||
-        code in 0xff01..0xff60 ||
-        code in 0xffe0..0xffe6
-    ) {
-        return 2
-    }
-    return 1
+    return ch.code.unicodeWidth() ?: 0
 }
 
 /**
