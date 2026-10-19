@@ -23,7 +23,7 @@ private val PREFIX_CHARS = charArrayOf(' ', '-', '+', '*', '>', '#', '/')
  */
 fun unfill(text: String): Pair<String, Options> {
     val options = Options.new(0)
-    val lines = rustLines(text)
+    val lines = if (text.isEmpty()) emptyList() else text.lines()
     for (idx in lines.indices) {
         val line = lines[idx]
         options.width = maxOf(options.width, displayWidth(line))
@@ -38,15 +38,15 @@ fun unfill(text: String): Pair<String, Options> {
         } else if (idx == 1) {
             options.subsequentIndent = prefix
         } else if (idx > 1) {
-            var commonLen = 0
-            while (commonLen < prefix.length &&
-                commonLen < options.subsequentIndent.length &&
-                prefix[commonLen] == options.subsequentIndent[commonLen]
-            ) {
-                commonLen++
+            val limit = minOf(prefix.length, options.subsequentIndent.length)
+            for (i in 0 until limit) {
+                if (prefix[i] != options.subsequentIndent[i]) {
+                    options.subsequentIndent = prefix.substring(0, i)
+                    break
+                }
             }
-            if (commonLen < options.subsequentIndent.length) {
-                options.subsequentIndent = prefix.substring(0, commonLen)
+            if (prefix.length < options.subsequentIndent.length) {
+                options.subsequentIndent = prefix
             }
         }
     }

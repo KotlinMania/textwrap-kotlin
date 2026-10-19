@@ -9,7 +9,7 @@ fun interface WrapAlgorithmFunction {
 }
 
 /**
- * Describes how to wrap words into lines.
+ * The [WrapAlgorithm] enum describes how to wrap words into lines.
  *
  * The simplest approach is to wrap words one by one until they no longer fit
  * on the current line. The [FirstFit] algorithm implements this greedy approach.
