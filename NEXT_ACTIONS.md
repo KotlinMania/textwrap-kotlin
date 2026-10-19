@@ -4,12 +4,12 @@ Based on AST analysis, here are the concrete next steps.
 
 ## Summary
 
-- **Files Present:** 15/15 (100.0%)
-- **Function parity:** 183/190 matched (target 280) — 96.3%
-- **Class/type parity:** 13/15 matched (target 42) — 86.7%
-- **Combined symbol parity:** 196/205 matched (target 322) — 95.6%
-- **Average inline-code cosine:** 0.68 (function body across 15 matched files)
-- **Average documentation cosine:** 0.73 (doc text across 15 matched files)
+- **Files Present:** 14/15 (93.3%)
+- **Function parity:** 183/190 matched (target 279) — 96.3%
+- **Class/type parity:** 13/15 matched (target 40) — 86.7%
+- **Combined symbol parity:** 196/205 matched (target 319) — 95.6%
+- **Average inline-code cosine:** 0.67 (function body across 14 matched files)
+- **Average documentation cosine:** 0.76 (doc text across 14 matched files)
 - **Cheat-zeroed Files:** 0
 - **Critical Issues:** 3 files with <0.60 function similarity
 
@@ -54,12 +54,12 @@ Every matched file is listed below with function and type symbol parity.
 ### 3. line_ending
 
 - **Target:** `textwrap.LineEnding`
-- **Similarity:** 0.39
+- **Similarity:** 0.48
 - **Dependents:** 1
-- **Priority Score:** 1000806.1
+- **Priority Score:** 1000805.2
 - **Functions:** 5/5 matched (target 7)
 - **Missing functions:** _none_
-- **Types:** 3/3 matched (target 5)
+- **Types:** 3/3 matched (target 4)
 - **Missing types:** _none_
 - **Tests:** 3/3 matched
 
@@ -94,7 +94,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Priority Score:** 31503.9
 - **Functions:** 8/11 matched (target 21)
 - **Missing functions:** `width`, `whitespace_width`, `penalty_width`
-- **Types:** 4/4 matched (target 8)
+- **Types:** 4/4 matched (target 7)
 - **Missing types:** _none_
 - **Tests:** 3/6 matched
 
@@ -137,9 +137,9 @@ Every matched file is listed below with function and type symbol parity.
 ### 10. core
 
 - **Target:** `textwrap.Core`
-- **Similarity:** 0.60
+- **Similarity:** 0.63
 - **Dependents:** 0
-- **Priority Score:** 1904.0
+- **Priority Score:** 1903.7
 - **Functions:** 16/16 matched (target 23)
 - **Missing functions:** _none_
 - **Types:** 3/3 matched (target 4)
@@ -149,10 +149,10 @@ Every matched file is listed below with function and type symbol parity.
 ### 11. indentation
 
 - **Target:** `textwrap.Indentation`
-- **Similarity:** 0.50
+- **Similarity:** 0.51
 - **Dependents:** 0
-- **Priority Score:** 1505.0
-- **Functions:** 15/15 matched (target 16)
+- **Priority Score:** 1504.9
+- **Functions:** 15/15 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
@@ -209,9 +209,9 @@ normal priority and missing-file ladders because they are wiring
 modules, not direct logic ports. Consult them for call-site routing;
 do not treat them as the next implementation target by default.
 
-### Matched
+### Missing
 
-| Source | Target | Path |
-|--------|--------|------|
-| `lib` | `textwrap.Lib` | `lib` |
+| Source | Expected target | Deps | Source path | Expected path |
+|--------|-----------------|------|-------------|---------------|
+| `lib` | `Lib` | 0 | `lib.rs` | `Lib.kt` |
 

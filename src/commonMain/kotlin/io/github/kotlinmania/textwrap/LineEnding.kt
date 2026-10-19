@@ -1,31 +1,37 @@
 // port-lint: source line_ending.rs
 package io.github.kotlinmania.textwrap
 
+typealias Item = Pair<String, LineEnding?>
+
 /**
- * Line-ending detection and conversion.
+ * Line ending detection and conversion.
  *
- * Supported line endings. Like in the Kotlin standard library, two line
+ * Supported line endings. Like in the standard library, two line
  * endings are supported: `\r\n` and `\n`.
  */
-enum class LineEnding(
-    private val ascii: String,
-) {
+enum class LineEnding {
     /**
-     * Carriage return and line feed, a line-ending sequence historically used in
-     * Windows. Corresponds to the sequence of ASCII control characters
-     * `0x0D 0x0A` or `\r\n`.
+     * Carriage return and line feed - a line ending sequence
+     * historically used in Windows. Corresponds to the sequence
+     * of ASCII control characters `0x0D 0x0A` or `\r\n`.
      */
-    CRLF("\r\n"),
+    CRLF,
 
     /**
-     * Line feed, a line ending historically used in Unix. Corresponds to the
-     * ASCII control character `0x0A` or `\n`.
+     * Line feed - a line ending historically used in Unix.
+     * Corresponds to the ASCII control character `0x0A` or `\n`.
      */
-    LF("\n"),
+    LF,
     ;
 
-    /** Turns this [LineEnding] value into its ASCII representation. */
-    fun asStr(): String = ascii
+    /**
+     * Turns this [LineEnding] value into its ASCII representation.
+     */
+    fun asStr(): String =
+        when (this) {
+            CRLF -> "\r\n"
+            LF -> "\n"
+        }
 }
 
 /**
