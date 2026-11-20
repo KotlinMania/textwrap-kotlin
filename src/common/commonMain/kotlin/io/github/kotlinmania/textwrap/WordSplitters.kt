@@ -11,29 +11,29 @@ fun interface WordSplitterFunction {
 /**
  * The [WordSplitter] enum describes where words can be split.
  */
-sealed interface WordSplitter {
+sealed class WordSplitter {
     /**
      * Return all possible indices where [word] can be split.
      *
      * The indices are in the range `0..word.length`. They point to the index after
      * the split point, i.e., after `-` if splitting on hyphens.
      */
-    fun splitPoints(word: String): List<Int>
+    abstract fun splitPoints(word: String): List<Int>
 
     /**
      * Compare two word splitters for equality.
      */
-    fun eq(other: WordSplitter): Boolean = this == other
+    open fun eq(other: WordSplitter): Boolean = this == other
 
     /**
      * Clone this word splitter.
      */
-    fun clone(): WordSplitter = this
+    open fun clone(): WordSplitter = this
 
     /**
      * Avoid any kind of hyphenation.
      */
-    data object NoHyphenation : WordSplitter {
+    data object NoHyphenation : WordSplitter() {
         override fun splitPoints(word: String): List<Int> = emptyList()
     }
 
@@ -41,7 +41,7 @@ sealed interface WordSplitter {
      * Default [WordSplitter]. Will split words on existing hyphens in the word
      * surrounded by alphanumeric characters.
      */
-    data object HyphenSplitter : WordSplitter {
+    data object HyphenSplitter : WordSplitter() {
         override fun splitPoints(word: String): List<Int> {
             val splits = mutableListOf<Int>()
             for (idx in word.indices) {
@@ -62,7 +62,7 @@ sealed interface WordSplitter {
      */
     class Custom(
         val splitter: WordSplitterFunction,
-    ) : WordSplitter {
+    ) : WordSplitter() {
         override fun splitPoints(word: String): List<Int> = splitter.splitPoints(word)
 
         override fun clone(): WordSplitter = Custom(splitter)

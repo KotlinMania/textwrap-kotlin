@@ -17,11 +17,11 @@ fun interface WrapAlgorithmFunction {
  * A more sophisticated approach is to find the line breaks which produce the
  * "prettiest" lines. The [OptimalFit] algorithm implements this approach.
  */
-sealed interface WrapAlgorithm {
+sealed class WrapAlgorithm {
     /**
      * Wrap words according to line widths.
      */
-    fun wrap(
+    abstract fun wrap(
         words: List<Word>,
         lineWidths: List<Int>,
     ): List<List<Word>>
@@ -29,7 +29,7 @@ sealed interface WrapAlgorithm {
     /**
      * Wrap words using a fast and simple first-fit algorithm.
      */
-    data object FirstFit : WrapAlgorithm {
+    data object FirstFit : WrapAlgorithm() {
         override fun wrap(
             words: List<Word>,
             lineWidths: List<Int>,
@@ -44,7 +44,7 @@ sealed interface WrapAlgorithm {
      */
     data class OptimalFit(
         val penalties: Penalties = Penalties.new(),
-    ) : WrapAlgorithm {
+    ) : WrapAlgorithm() {
         override fun wrap(
             words: List<Word>,
             lineWidths: List<Int>,
@@ -57,19 +57,19 @@ sealed interface WrapAlgorithm {
     /**
      * Compare two wrap algorithms for equality.
      */
-    fun eq(other: WrapAlgorithm): Boolean = this == other
+    open fun eq(other: WrapAlgorithm): Boolean = this == other
 
     /**
      * Clone this wrap algorithm.
      */
-    fun clone(): WrapAlgorithm = this
+    open fun clone(): WrapAlgorithm = this
 
     /**
      * Custom wrapping function.
      */
     class Custom(
         val wrapper: WrapAlgorithmFunction,
-    ) : WrapAlgorithm {
+    ) : WrapAlgorithm() {
         override fun wrap(
             words: List<Word>,
             lineWidths: List<Int>,
