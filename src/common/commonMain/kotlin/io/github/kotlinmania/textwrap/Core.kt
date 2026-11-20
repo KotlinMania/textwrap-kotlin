@@ -52,26 +52,34 @@ internal fun skipAnsiEscapeSequence(
 /**
  * Returns the column display width of a single character.
  */
-internal fun chWidth(ch: Char): Int {
-    if (ch.isLowSurrogate()) {
-        return 0
-    }
-    if (ch.isHighSurrogate()) {
-        return 2
-    }
-    return ch.code.unicodeWidth() ?: 0
-}
+internal fun chWidth(ch: Char): Int = ch.code.unicodeWidth() ?: 0
+
+/**
+ * Returns the column display width of a Unicode scalar code point.
+ */
+internal fun chWidth(codePoint: Int): Int = codePoint.unicodeWidth() ?: 0
 
 /**
  * Compute the display width of [text] while skipping over ANSI escape sequences.
  */
 fun displayWidth(text: String): Int {
     val chars = text.iterator()
+    var pending: Char? = null
     var width = 0
-    while (chars.hasNext()) {
-        val ch = chars.next()
+    while (pending != null || chars.hasNext()) {
+        val ch = pending ?: chars.next()
+        pending = null
         if (skipAnsiEscapeSequence(ch, chars)) {
             continue
+        }
+        if (ch.isHighSurrogate() && chars.hasNext()) {
+            val next = chars.next()
+            if (next.isLowSurrogate()) {
+                val codePoint = 0x10000 + ((ch.code - 0xD800) shl 10) + (next.code - 0xDC00)
+                width += chWidth(codePoint)
+                continue
+            }
+            pending = next
         }
         width += chWidth(ch)
     }
@@ -145,7 +153,14 @@ class Word(
                     }
                 }
 
-                val cw = chWidth(ch)
+                val cw =
+                    if (ch.isHighSurrogate() && charIdx < charList.size && charList[charIdx].isLowSurrogate()) {
+                        val low = charList[charIdx++]
+                        val codePoint = 0x10000 + ((ch.code - 0xD800) shl 10) + (low.code - 0xDC00)
+                        chWidth(codePoint)
+                    } else {
+                        chWidth(ch)
+                    }
                 if (currentWidth > 0 && currentWidth + cw > lineWidth) {
                     val pieceWord = word.substring(offset, startCharIdx)
                     yield(

@@ -92,4 +92,28 @@ class CoreTest {
             broken,
         )
     }
+
+    @Test
+    fun nonBmpScalarWidthsRespectUnicodeWidth() {
+        // U+10400 Deseret Capital Letter Long I (width 1)
+        val deseret = "\uD801\uDC00"
+        // U+E0100 Variation Selector-17 (width 0)
+        val vs17 = "\uDB40\uDD00"
+        assertEquals(1, displayWidth(deseret))
+        assertEquals(0, displayWidth(vs17))
+        assertEquals(1, displayWidth("A$vs17"))
+    }
+
+    @Test
+    fun wordBreakApartPreservesSurrogatePairs() {
+        val word = Word.from("😂\uD801\uDC00")
+        val pieces = word.breakApart(2).toList()
+        assertEquals(
+            listOf(
+                Word(word = "😂", width = 2, whitespace = "", penalty = ""),
+                Word(word = "\uD801\uDC00", width = 1, whitespace = "", penalty = ""),
+            ),
+            pieces,
+        )
+    }
 }

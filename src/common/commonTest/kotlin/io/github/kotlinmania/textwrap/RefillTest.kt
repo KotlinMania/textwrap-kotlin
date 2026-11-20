@@ -157,4 +157,30 @@ class RefillTest {
     fun refillDefaultsToLf() {
         assertEquals("foo\nbar\nbaz", refill("foo bar baz", 5))
     }
+
+    @Test
+    fun unfillListItemTrailingNewline() {
+        val (text, options) = unfill("* This is an\n  example of\n  a list item.\n")
+        assertEquals("This is an example of a list item.\n", text)
+        assertEquals("* ", options.initialIndent)
+        assertEquals("  ", options.subsequentIndent)
+        assertEquals(LineEnding.LF, options.lineEnding)
+    }
+
+    @Test
+    fun refillBlockQuoteTrailingNewline() {
+        val text = "> Memory\n> safety without garbage\n> collection.\n"
+        assertEquals(
+            "> Memory safety\n> without garbage\n> collection.\n",
+            refill(text, 20),
+        )
+        assertEquals(
+            "> Memory safety without garbage\n> collection.\n",
+            refill(text, 40),
+        )
+        assertEquals(
+            "> Memory safety without garbage collection.\n",
+            refill(text, 60),
+        )
+    }
 }

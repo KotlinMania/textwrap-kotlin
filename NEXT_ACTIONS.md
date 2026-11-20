@@ -5,9 +5,9 @@ Based on AST analysis, here are the concrete next steps.
 ## Summary
 
 - **Files Present:** 14/15 (93.3%)
-- **Function parity:** 58/193 matched (target 106) — 30.1%
+- **Function parity:** 59/193 matched (target 108) — 30.6%
 - **Class/type parity:** 13/15 matched (target 29) — 86.7%
-- **Combined symbol parity:** 71/208 matched (target 135) — 34.1%
+- **Combined symbol parity:** 72/208 matched (target 137) — 34.6%
 - **Average inline-code cosine:** 0.11 (function body across 14 matched files)
 - **Average documentation cosine:** 0.76 (doc text across 14 matched files)
 - **Cheat-zeroed Files:** 0
@@ -31,7 +31,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 1. options
 
-- **Target:** `Options`
+- **Target:** `textwrap.Options`
 - **Similarity:** 0.16
 - **Dependents:** 4
 - **Priority Score:** 4021308.5
@@ -43,7 +43,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 2. wrap
 
-- **Target:** `Wrap`
+- **Target:** `textwrap.Wrap`
 - **Similarity:** 0.03
 - **Dependents:** 1
 - **Priority Score:** 1454809.8
@@ -55,7 +55,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 3. line_ending
 
-- **Target:** `LineEnding`
+- **Target:** `textwrap.LineEnding`
 - **Similarity:** 0.06
 - **Dependents:** 1
 - **Priority Score:** 1030809.4
@@ -67,7 +67,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 4. termwidth
 
-- **Target:** `Termwidth`
+- **Target:** `textwrap.Termwidth`
 - **Similarity:** 0.24
 - **Dependents:** 1
 - **Priority Score:** 1000207.6
@@ -78,11 +78,11 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 5. refill
 
-- **Target:** `Refill`
+- **Target:** `textwrap.Refill`
 - **Similarity:** 0.03
 - **Dependents:** 0
 - **Priority Score:** 202209.7
-- **Functions:** 2/22 matched (target 3)
+- **Functions:** 2/22 matched (target 4)
 - **Missing functions:** `unfill_simple`, `unfill_no_new_line`, `unfill_simple_crlf`, `unfill_mixed_new_lines`, `test_unfill_consecutive_different_prefix`, `unfill_trailing_newlines`, `unfill_mixed_trailing_newlines`, `unfill_trailing_crlf`, `unfill_initial_indent`, `unfill_differing_indents`, `unfill_list_item`, `unfill_multiple_char_prefix`, `unfill_block_quote`, `unfill_only_prefixes_issue_466`, `unfill_trailing_newlines_issue_466`, `unfill_whitespace`, `refill_convert_lf_to_crlf`, `refill_convert_crlf_to_lf`, `refill_convert_mixed_newlines`, `refill_defaults_to_lf`
 - **Types:** 0/0 matched
 - **Missing types:** _none_
@@ -90,7 +90,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 6. fill
 
-- **Target:** `Fill`
+- **Target:** `textwrap.Fill`
 - **Similarity:** 0.05
 - **Dependents:** 0
 - **Priority Score:** 182109.5
@@ -102,7 +102,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 7. indentation
 
-- **Target:** `Indentation`
+- **Target:** `textwrap.Indentation`
 - **Similarity:** 0.04
 - **Dependents:** 0
 - **Priority Score:** 131509.6
@@ -114,7 +114,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 8. wrap_algorithms.optimal_fit
 
-- **Target:** `OptimalFit`
+- **Target:** `textwrap.OptimalFit`
 - **Similarity:** 0.08
 - **Dependents:** 0
 - **Priority Score:** 81609.2
@@ -126,19 +126,19 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 9. core
 
-- **Target:** `Core`
-- **Similarity:** 0.14
+- **Target:** `textwrap.Core`
+- **Similarity:** 0.12
 - **Dependents:** 0
-- **Priority Score:** 72008.6
-- **Functions:** 10/17 matched (target 14)
-- **Missing functions:** `ch_width`, `skip_ansi_escape_sequence_works`, `emojis_have_correct_width`, `display_width_works`, `display_width_narrow_emojis`, `display_width_narrow_emojis_variant_selector`, `display_width_emojis`
+- **Priority Score:** 62008.8
+- **Functions:** 11/17 matched (target 15)
+- **Missing functions:** `skip_ansi_escape_sequence_works`, `emojis_have_correct_width`, `display_width_works`, `display_width_narrow_emojis`, `display_width_narrow_emojis_variant_selector`, `display_width_emojis`
 - **Types:** 3/3 matched
 - **Missing types:** _none_
 - **Tests:** 0/6 matched
 
 ### 10. word_splitters
 
-- **Target:** `WordSplitters`
+- **Target:** `textwrap.WordSplitters`
 - **Similarity:** 0.04
 - **Dependents:** 0
 - **Priority Score:** 61009.6
@@ -150,7 +150,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 11. columns
 
-- **Target:** `Columns`
+- **Target:** `textwrap.Columns`
 - **Similarity:** 0.06
 - **Dependents:** 0
 - **Priority Score:** 60709.4
@@ -162,7 +162,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 12. wrap_algorithms
 
-- **Target:** `WrapAlgorithms`
+- **Target:** `textwrap.WrapAlgorithms`
 - **Similarity:** 0.16
 - **Dependents:** 0
 - **Priority Score:** 51208.4
@@ -174,7 +174,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 13. word_separators
 
-- **Target:** `WordSeparators`
+- **Target:** `textwrap.WordSeparators`
 - **Similarity:** 0.10
 - **Dependents:** 0
 - **Priority Score:** 41109.0
@@ -186,7 +186,7 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 14. fuzzing
 
-- **Target:** `Fuzzing`
+- **Target:** `textwrap.Fuzzing`
 - **Similarity:** 0.32
 - **Dependents:** 0
 - **Priority Score:** 306.8

@@ -4,6 +4,29 @@ package io.github.kotlinmania.textwrap
 private val PREFIX_CHARS = charArrayOf(' ', '-', '+', '*', '>', '#', '/')
 
 /**
+ * Matches Rust `str::lines()`: splits only on `\n`, strips a preceding `\r`,
+ * and omits the empty trailing slice produced by a final `\n` or `\r\n`.
+ */
+private fun rustLines(text: String): List<String> {
+    if (text.isEmpty()) {
+        return emptyList()
+    }
+    val result = mutableListOf<String>()
+    var start = 0
+    while (start < text.length) {
+        val lf = text.indexOf('\n', start)
+        if (lf < 0) {
+            result.add(text.substring(start))
+            break
+        }
+        val end = if (lf > start && text[lf - 1] == '\r') lf - 1 else lf
+        result.add(text.substring(start, end))
+        start = lf + 1
+    }
+    return result
+}
+
+/**
  * Unpack a paragraph of already-wrapped text.
  *
  * This function attempts to recover the original text from a single
@@ -23,7 +46,7 @@ private val PREFIX_CHARS = charArrayOf(' ', '-', '+', '*', '>', '#', '/')
  */
 fun unfill(text: String): Pair<String, Options> {
     val options = Options.new(0)
-    val lines = if (text.isEmpty()) emptyList() else text.lines()
+    val lines = rustLines(text)
     for (idx in lines.indices) {
         val line = lines[idx]
         options.width = maxOf(options.width, displayWidth(line))

@@ -20,33 +20,33 @@ fun interface WordSeparatorFunction {
  * ASCII spaces (`' '`). This works for Western languages without emojis. A more
  * complex approach is to use the Unicode line breaking algorithm.
  */
-sealed interface WordSeparator {
+sealed class WordSeparator {
     /**
      * Find all words in [line].
      */
-    fun findWords(line: String): Sequence<Word>
+    abstract fun findWords(line: String): Sequence<Word>
 
     /**
      * Compare two word separators for equality.
      */
-    fun eq(other: WordSeparator): Boolean = this == other
+    open fun eq(other: WordSeparator): Boolean = this == other
 
     /**
      * Clone this word separator.
      */
-    fun clone(): WordSeparator = this
+    open fun clone(): WordSeparator = this
 
     /**
      * Find words by splitting on runs of `' '` characters.
      */
-    data object AsciiSpace : WordSeparator {
+    data object AsciiSpace : WordSeparator() {
         override fun findWords(line: String): Sequence<Word> = findWordsAsciiSpace(line)
     }
 
     /**
      * Split `line` into words using Unicode break properties.
      */
-    data object UnicodeBreakProperties : WordSeparator {
+    data object UnicodeBreakProperties : WordSeparator() {
         override fun findWords(line: String): Sequence<Word> = findWordsUnicodeBreakProperties(line)
     }
 
@@ -55,7 +55,7 @@ sealed interface WordSeparator {
      */
     class Custom(
         val separator: WordSeparatorFunction,
-    ) : WordSeparator {
+    ) : WordSeparator() {
         override fun findWords(line: String): Sequence<Word> = separator.findWords(line).asSequence()
 
         override fun clone(): WordSeparator = Custom(separator)
